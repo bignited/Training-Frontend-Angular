@@ -14,7 +14,7 @@ export class OverviewComponent {
   //Initalize empty array
   allCourses = [];
 
-  course: Course[] = [
+  courseList: Course[] = [
     {
     id: 0,
     name: 'JavaScript',
