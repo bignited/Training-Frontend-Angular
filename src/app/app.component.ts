@@ -1,14 +1,11 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { LoginComponent } from './pages/login/login.component';
 
 @Component({
   selector: 'app-root',
   imports: [RouterOutlet],
-  template: `
-    <h1>Welcome to {{title}}!</h1>
-
-    <router-outlet />
-  `,
+  templateUrl: 'app.component.html',
   styles: [],
 })
 export class AppComponent {

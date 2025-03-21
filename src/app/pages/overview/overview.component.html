@@ -1,0 +1,10 @@
+<main>
+    <div>
+        <button>Enroll</button>
+        <button>Enrolled</button>
+        <button>Create</button>
+    </div>
+    <div>
+        <app-course-list *ngFor="let Course of course" [course]="Course"></app-course-list>
+    </div>
+</main>
