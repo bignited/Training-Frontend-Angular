@@ -10,7 +10,6 @@ import { Course } from '../../models/course.model';
       <p>Location: {{ course.location }}</p>
       <p>Given by: {{course.teacher}}</p>
       <p>Date: {{course.date}}</p>
-
     </section>
   `,
   styles: ``

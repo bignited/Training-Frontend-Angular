@@ -1,0 +1,28 @@
+{
+  "courses": [
+    {
+      "id": "1",
+      "name": "Javascript",
+      "location": "Antwerpen",
+      "teacher": "Mr. Jacques",
+      "imageUrl": null,
+      "date": "1-1-2026"
+    },
+    {
+      "id": "2",
+      "name": "Cypress Basics",
+      "location": "Brussels",
+      "teacher": "Mrs. Daniels",
+      "imageUrl": null,
+      "date": "2-2-1027"
+    },
+    {
+      "id": "8ae2",
+      "name": "Horse Riding",
+      "location": "Brussels",
+      "teacher": "Mr Louis",
+      "date": "2025-03-25",
+      "time": "16:24"
+    }
+  ]
+}
