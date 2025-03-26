@@ -1,0 +1,6 @@
+<main>
+    <app-navbar></app-navbar>
+    <div class="list-items">
+        <app-course-list *ngFor="let Course of fetchedCourses" [course]="Course"></app-course-list>
+    </div>
+</main>

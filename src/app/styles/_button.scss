@@ -1,0 +1,22 @@
+@use 'variables' as *; 
+
+.button-primary {
+    color: white;
+    border: none;
+    background-color: $primary-color;
+    text-align: center;
+    text-decoration: none;
+    padding: 10px 30px;
+    margin: 0px 5px;
+   
+    &:hover{
+        background-color: #2e39d4;
+    }
+}
+
+button, input[type=submit] {
+    cursor: pointer;
+}
+
+ 
+     

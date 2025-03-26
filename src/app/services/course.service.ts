@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Course } from '../models/course.model';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -20,8 +20,16 @@ export class CourseService {
     return this.http.get<Course[]>(`${this.url}`);
   }
   
-  getCourseById(id:string){
+  getCourseById(id:number): Observable<Course>{
     return this.http.get<Course>(`${this.url}/` + id );
+  }
+
+  deleteCourseById(id:string){
+    return this.http.delete(`${this.url}/` + id); 
+  }
+
+  editCourseById(id:string, course:Course){
+    return this.http.put(`${this.url}` + id, course)
   }
 
 }

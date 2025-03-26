@@ -1,13 +1,6 @@
 <main>
-    <div>
-        <button>Enroll</button>
-        <button>Enrolled</button>
-        <button>Create</button>
-    </div>
-    <div>
+     <app-navbar />
+    <div class="list-items">
         <app-course-list *ngFor="let Course of courseList" [course]="Course"></app-course-list>
-    </div>
-    <div>
-        <app-create-course></app-create-course>
     </div>
 </main>

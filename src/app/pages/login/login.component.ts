@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { ReactiveFormsModule, FormControl, Validators, FormGroup } from '@angular/forms';
+import { AuthService } from '../../services/auth.service';
 import { Router, RouterModule } from '@angular/router';
  
 @Component({
@@ -14,6 +15,7 @@ export class LoginComponent {
   loginError: string | undefined; 
   
   router = inject(Router);
+  AuthService = inject(AuthService);
 
   constructor(){
     this.loginForm = new FormGroup({
@@ -34,6 +36,7 @@ export class LoginComponent {
       this.loginError = "Incorrect Credentials";
     } else if (this.loginForm.valid){
       console.log(usernameValue, passwordValue); 
+      this.AuthService.setToken('loggedIn'); 
       this.router.navigateByUrl("overview"); 
     }
   }

@@ -1,28 +1,38 @@
 {
   "courses": [
     {
-      "id": "1",
+      "id": 1,
       "name": "Javascript",
       "location": "Antwerpen",
       "teacher": "Mr. Jacques",
       "imageUrl": null,
-      "date": "1-1-2026"
+      "date": "1-1-2026",
+      "timeStart": "12:55"
     },
     {
-      "id": "2",
+      "id": 2,
       "name": "Cypress Basics",
       "location": "Brussels",
       "teacher": "Mrs. Daniels",
       "imageUrl": null,
-      "date": "2-2-1027"
+      "date": "2-2-1027",
+      "timeStart": "12:55"
     },
     {
-      "id": "8ae2",
-      "name": "Horse Riding",
-      "location": "Brussels",
-      "teacher": "Mr Louis",
-      "date": "2025-03-25",
-      "time": "16:24"
+      "id": 4,
+      "name": "Interior Design",
+      "location": "Antwerpen",
+      "teacher": "Mrs Jane",
+      "date": "2025-03-14",
+      "timeStart": "12:55"
+    },
+    {
+      "name": "Vibe Coding",
+      "location": "Leuven",
+      "teacher": "Nitti",
+      "date": "2025-03-20",
+      "timeStart": "10:00",
+      "id": 7
     }
   ]
 }

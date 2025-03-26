@@ -1,9 +1,9 @@
 export interface Course{
-    id:number | null;
+    id:number;
     name:string;
     location:string;
     teacher: string;
     image:string | null; //url
-    date:Date | null;
+    date:Date;
     timeStart:string; 
 }
