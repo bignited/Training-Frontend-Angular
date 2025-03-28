@@ -1,11 +1,16 @@
 $lightgray: #efeff0;
-$blue: #00b4fc; 
+$blue: #3B4BF0; 
 
 main {
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-image: linear-gradient(to right, #9fbeff, #2833ab);
+}
+
+.login-card {
+    display: flex; 
 }
 
 input[type="text"], input[type="password"]{
@@ -14,28 +19,50 @@ input[type="text"], input[type="password"]{
     width: 200px;
     border-radius: 10px;
     padding: 10px 20px;
+
+    background-color: #EDF4FF;
 }
 
 input[type="submit"] {
     margin: auto;
     border: none;
+    width: 100%;
     border-radius: 10px;
     padding: 10px 20px;
+    color: white;
     background-color: $blue;
-    &:hover {
-        background: darken($blue, 5%)
-      }
+
+}
+
+.image-frame {
+    position: relative;
+}
+
+.image-frame::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  //transparent overlay
+  background: #9fbdff3d;
+}
+
+.image-frame img {
+ height: 100%;
+ max-width: 300px;
+ object-fit: cover;
 }
 
 .login-field {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
 
-    padding: 5% 10%;
-    background-color: $lightgray;
-    max-width: 25%;
-    border-radius: 20px;
+    padding: 20% 40%;
+    background-color: white;
 }
 
 .error-text {

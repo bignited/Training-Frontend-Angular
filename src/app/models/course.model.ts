@@ -3,6 +3,8 @@ export interface Course{
     name:string;
     location:string;
     teacher: string;
-    image:string; //url
+    imageUrl:string | null; //url
     date:Date;
+    timeStart:string; 
+    timeEnd:string;
 }

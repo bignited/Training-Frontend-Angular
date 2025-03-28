@@ -1,15 +1,20 @@
 <main>
-    <div class="login-field">
-        <h3>Welcome</h3>
-        <form (ngSubmit)="onSubmit()" [formGroup]="loginForm">
-            <label for="username">Username</label><br>
-            <input type="text" name="username" formControlName="username"><br>
-            <label for="password">Password</label><br>
-            <input type="password" name="password" formControlName="password"><br>
-            <input type="submit" value="Login">
-            <div class="error-text" *ngIf="loginError">
-                <p>{{ loginError }}</p>
-            </div>
-        </form>
+    <div class="login-card">
+        <div class="image-frame">
+            <img src="loginImage.jpg" alt="Smiling students">
+        </div>
+        <div class="login-field">
+            <h3>Welcome</h3>
+            <form (ngSubmit)="onSubmit()" [formGroup]="loginForm">
+                <label for="username">Username</label><br>
+                <input type="text" name="username" formControlName="username" id="input-username"><br>
+                <label for="password">Password</label><br>
+                <input type="password" name="password" formControlName="password" id="input-password"><br>
+                <input type="submit" value="Login" id="button-login">
+                <div class="error-text" *ngIf="loginError" id="error-message">
+                    <p>{{ loginError }}</p>
+                </div>
+            </form>
+        </div>
     </div>
 </main>

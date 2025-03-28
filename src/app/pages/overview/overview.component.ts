@@ -1,33 +1,41 @@
-import { CommonModule, NgFor } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, Input, OnInit } from '@angular/core';
 import { CourseListComponent } from '../../components/course-list/course-list.component';
 import { Course } from '../../models/course.model';
-
+import { CourseService } from '../../services/course.service';
+import { NavbarComponent } from '../../components/navbar/navbar.component';
+import { AlertBoxComponent } from '../../components/alert-box/alert-box.component';
+ 
 @Component({
   selector: 'app-overview',
-  imports: [CommonModule, CourseListComponent],
+  imports: [CommonModule, CourseListComponent, NavbarComponent, AlertBoxComponent],
   templateUrl: 'overview.component.html',
   styleUrl: 'overview.component.scss'
 })
-export class OverviewComponent {
+export class OverviewComponent implements OnInit {
 
-  //Initalize empty array
-  allCourses = [];
+  courseList:any = [];
+  enrolledCourses: any = [];
+  errorMessage: string | null = null;
 
-  courseList: Course[] = [
-    {
-    id: 0,
-    name: 'JavaScript',
-    location: 'Antwerpen',
-    teacher: 'Miss Jones',
-    image: 'null',
-    date: new Date(1-1-2026)
-  }, 
-{ id: 1,
-  name: 'Python',
-  location: 'Brussels',
-  teacher: 'Mr. Simons',
-  image: 'null',
-  date: new Date(2-5-2025)}
-]
+  constructor(private courseService: CourseService){
+
+  }
+
+  ngOnInit(){
+    this.fetchCourses();
+  }
+  
+  fetchCourses(){
+    this.courseService.getAllCourses().subscribe({
+      next: (courses) => {
+        this.courseList = courses;
+      },
+      error: (err) => console.error('Error fetching courses:', err)
+    }); 
+  }
+
+  handleError(error:string){
+    this.errorMessage = error;
+  }
 }
