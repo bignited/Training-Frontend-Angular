@@ -24,8 +24,10 @@ import { CommonModule } from '@angular/common';
         <input type="text" name="teacher" formControlName="teacher"><br>
         <label for="date">Date:</label><br>
         <input type="date" name="date" formControlName="date"><br>
-        <label for="time">Time start:</label><br>
+        <label for="timeStart">Time start:</label><br>
         <input type="time" name="timeStart" formControlName="timeStart"><br>
+        <label for="timeEnd">Time end:</label><br>
+        <input type="time" name="timeEnd" formControlName="timeEnd"><br>
         <input type="submit" value="Add Course" [disabled]="!createCourseForm.valid">
         <div class="error-text" *ngIf="validationError" id="error-message">
             <p>{{ validationError }}</p>
@@ -57,7 +59,8 @@ constructor(private courseService: CourseService){
     location: new FormControl('', Validators.required),
     teacher: new FormControl('', Validators.required),
     date: new FormControl('', Validators.required),
-    timeStart: new FormControl('', Validators.required)
+    timeStart: new FormControl('', Validators.required),
+    timeEnd: new FormControl('', Validators.required),
   })
 }
 

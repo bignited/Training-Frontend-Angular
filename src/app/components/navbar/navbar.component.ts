@@ -16,9 +16,10 @@ import { RouterLink } from '@angular/router';
   nav {
     display: flex;
     justify-content: center;  
+    gap: 5px;
     width: 100vw;
     
-    margin-top: 25px;
+    margin-top: 75px;
     margin-bottom: 25px;
   }
   `

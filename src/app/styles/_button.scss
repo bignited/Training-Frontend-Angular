@@ -1,17 +1,35 @@
 @use 'variables' as *; 
 
-.button-primary {
+
+@mixin basic-button-layout {
     color: white;
     border: none;
-    background-color: $primary-color;
     text-align: center;
     text-decoration: none;
     padding: 10px 30px;
-    margin: 0px 5px;
-   
+}
+
+.button-primary {
+    @include basic-button-layout;
+    background-color: $primary-color;
+
     &:hover{
         background-color: #2e39d4;
     }
+}
+
+.button-danger {
+   @include basic-button-layout;
+    background-color: $danger-color;
+
+   &:hover{
+    background-color: #d43535;
+   }
+}
+
+.button-success {
+    @include basic-button-layout;
+    background-color: $dark-blue;
 }
 
 button, input[type=submit] {

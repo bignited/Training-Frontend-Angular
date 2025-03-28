@@ -4,16 +4,19 @@ import { CourseListComponent } from '../../components/course-list/course-list.co
 import { Course } from '../../models/course.model';
 import { CourseService } from '../../services/course.service';
 import { NavbarComponent } from '../../components/navbar/navbar.component';
+import { AlertBoxComponent } from '../../components/alert-box/alert-box.component';
  
 @Component({
   selector: 'app-overview',
-  imports: [CommonModule, CourseListComponent, NavbarComponent],
+  imports: [CommonModule, CourseListComponent, NavbarComponent, AlertBoxComponent],
   templateUrl: 'overview.component.html',
   styleUrl: 'overview.component.scss'
 })
 export class OverviewComponent implements OnInit {
 
   courseList:any = [];
+  enrolledCourses: any = [];
+  errorMessage: string | null = null;
 
   constructor(private courseService: CourseService){
 
@@ -30,5 +33,9 @@ export class OverviewComponent implements OnInit {
       },
       error: (err) => console.error('Error fetching courses:', err)
     }); 
+  }
+
+  handleError(error:string){
+    this.errorMessage = error;
   }
 }

@@ -16,15 +16,27 @@ import { CourseService } from '../../services/course.service';
     flex-wrap: wrap;
     width: auto;
     gap: 20px;
-}`
+}
+
+  .no-courses-message {
+    text-align: center;
+    padding: 10% 0; 
+  }
+
+  main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }`
 })
 export class EnrolledComponent {
 
   fetchedCourses: Course[] = [];
   enrolledCoursesIds = JSON.parse(sessionStorage.getItem("enrolledCourses") || "[]");
+  noCourses: boolean = false;
   
   constructor(private courseService: CourseService){
-
+  
   }
 
   ngOnInit(){
@@ -34,6 +46,14 @@ export class EnrolledComponent {
   }
   
   fetchCourses() {
+    this.fetchedCourses = [];
+    this.enrolledCoursesIds = JSON.parse(sessionStorage.getItem("enrolledCourses") || "[]");
+
+    //If not enrolled in any courses, display message
+    if(this.enrolledCoursesIds.length < 1){
+      this.noCourses = true;
+    }
+
     this.enrolledCoursesIds.forEach((id: number) => {   
       this.courseService.getCourseById(id).subscribe({
         next: (data) => {
@@ -43,6 +63,11 @@ export class EnrolledComponent {
         error: (err) => console.error('Error fetching enrolled courses:', err)
       });
     })
+ }
+
+ onCourseUnenrolled(){
+  //refresh shown courses after deleting one
+   this.fetchCourses(); 
  }
 }
 

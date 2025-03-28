@@ -4,13 +4,13 @@ $blue: #3B4BF0;
 main {
     height: 100vh;
     display: flex;
-    padding-left: 27%;
+    justify-content: center;
     align-items: center;
     background-image: linear-gradient(to right, #9fbeff, #2833ab);
 }
 
-.wrapper {
-    display: flex;
+.login-card {
+    display: flex; 
 }
 
 input[type="text"], input[type="password"]{

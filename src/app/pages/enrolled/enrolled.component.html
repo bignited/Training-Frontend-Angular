@@ -1,6 +1,10 @@
 <main>
     <app-navbar></app-navbar>
     <div class="list-items">
-        <app-course-list *ngFor="let Course of fetchedCourses" [course]="Course"></app-course-list>
+        <app-course-list *ngFor="let Course of fetchedCourses" [course]="Course" [isEnrolledView]="true" (courseUnenrolled)="onCourseUnenrolled()"></app-course-list>
+    </div>
+    <div *ngIf="noCourses" class="no-courses-message">
+        <h3>Not enrolled in any courses yet</h3>
+        <p>Have a look at 'Enroll' to find a course that suits you</p>
     </div>
 </main>

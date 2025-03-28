@@ -1,13 +1,15 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, inject, Input, OnInit, Output } from '@angular/core';
 import { Course } from '../../models/course.model';
+import { CommonModule } from '@angular/common';
+import { ConflictCheckService } from '../../services/conflict-check.service';
 
 @Component({
   selector: 'app-course-list',
-  imports: [],
+  imports: [CommonModule],
   template: `
     <section class="list-item">
       <div class="course-image">
-        <figure><img src="https://placehold.co/400x200" alt="placeholder image"></figure>
+        <figure><img [src]="course.imageUrl ?? 'https://placehold.co/300x200'" alt="placeholder image"></figure>
       </div>
       <div class="course-data">
         <h2>{{ course.name }}</h2>
@@ -28,10 +30,12 @@ import { Course } from '../../models/course.model';
             </div>
             <div class="course-detail">
               <img src="icons/clock.svg">
-              <p>{{course.timeStart}}</p>
+              <p>{{course.timeStart}} - {{course.timeEnd }}</p>
             </div>
           </div>
-          <button (click)="checkIfEnrolled()" class="button-primary">Enroll</button>
+          <button (click)="toggleEnrollment()" 
+          [ngClass]="isEnrolledView ? 'button-danger': 'button-primary'">
+           {{ isEnrolledView ? 'Unenroll' : 'Enroll' }}</button>
       </div>
     </section>
   `,
@@ -40,6 +44,7 @@ import { Course } from '../../models/course.model';
     background-color: #edf4ff;
     margin: auto;
     border-radius: 20px;
+    width: 350px;
   }
 
   .course-data {
@@ -54,7 +59,7 @@ import { Course } from '../../models/course.model';
       width: 20px
     }
   }
-  
+
   .course-image{
      
     figure {
@@ -68,37 +73,82 @@ import { Course } from '../../models/course.model';
 
     img {
       object-fit: contain;
-      max-width: 100%;
+      width: 100%;
       transform-origin: center;
     }
   }`
 })
-export class CourseListComponent {
+export class CourseListComponent implements OnInit {
 
   @Input() course!: Course;
+  // value is set on import, e.g. <app-course-list [isEnrolledView]="true">
+  @Input() isEnrolledView: boolean = false;
+
+  @Output() courseUnenrolled = new EventEmitter<void>();
+  @Output() enrollmentError = new EventEmitter<string>();
+  @Output() enrollmentSuccess = new EventEmitter<string>();
+
   enrolledCourses: any;
+  isEnrolled: boolean = false; 
+
+  private conflictCheck = inject(ConflictCheckService);
 
   constructor(){
     const storedCourses = sessionStorage.getItem('enrolledCourses');
     this.enrolledCourses = storedCourses ? JSON.parse(storedCourses) : [];
   }
  
-  checkIfEnrolled(){
+  ngOnInit(){
+    if(this.enrolledCourses.includes(this.course.id)){
+      this.isEnrolled = true;
+    }
+  }
+
+  toggleEnrollment() {
+    if (this.isEnrolledView) {
+       this.unenroll(this.course.id);
+    } else {
+      this.enroll(this.course.id);
+    }
+  }
+
+  async enroll(courseId:number){
 
     const alreadyEnrolled = this.enrolledCourses.includes(this.course.id);
     if (!alreadyEnrolled) {
-      this.enrollCourse(this.course.id);
+       
+      //fetch which (if any) courses are saved in sessionStorage
+    const storedCourses = sessionStorage.getItem('enrolledCourses');
+    this.enrolledCourses = storedCourses ? JSON.parse(storedCourses) : [];
+    
+    let errorMessage = await this.conflictCheck.checkForDateConflict(this.course.id);
+    if(errorMessage){
+      this.enrollmentError.emit(errorMessage); 
+      return console.log('Can\'t enroll due to conflict'); 
+    } else {
+      this.enrollmentSuccess.emit('Enrolled succesfully');
+    }
+     
+    this.enrolledCourses.push(courseId); 
+    console.log(this.enrolledCourses);
+    //set to 'true' to display success message 
+    this.isEnrolled = true; 
+    //update the enrolledCourses array in sessionStorage
+    sessionStorage.setItem('enrolledCourses', JSON.stringify(this.enrolledCourses));
+    
+    
+
     } else {
       console.log('Already enrolled in this course');
       return; 
     }
   }
 
-  enrollCourse(courseId:any){
+  unenroll(courseId:number){
 
-    this.enrolledCourses.push(courseId); 
-    console.log(this.enrolledCourses);
+    const index = this.enrolledCourses.indexOf(courseId);
+    this.enrolledCourses.splice(index, 1);
     sessionStorage.setItem('enrolledCourses', JSON.stringify(this.enrolledCourses));
-
+    this.courseUnenrolled.emit();
   }
 }
