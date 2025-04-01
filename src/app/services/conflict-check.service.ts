@@ -1,13 +1,14 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { CourseService } from './course.service';
 import { firstValueFrom, lastValueFrom } from 'rxjs';
+import { ErrorMessages } from '../errors/errormessages';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ConflictCheckService {
 
-  constructor(private courseService: CourseService) { }
+  courseService = inject(CourseService);
 
   async checkForDateConflict(newCourseId:number){
     const storedCourses = (sessionStorage.getItem('enrolledCourses'));
@@ -20,13 +21,9 @@ export class ConflictCheckService {
       const locationNewCourse = newCourse.location;
       const dateNewCourse = newCourse.date;
 
-      console.log(`You want to enroll into ${newCourse.name}, in ${locationNewCourse} starting ${startTimeNewCourse}`)
-     
       const enrolledCourseData = await Promise.all(
         enrolledCourses.map((id: number) => lastValueFrom(this.courseService.getCourseById(id)))
       );
-
-      console.log(`Value of enrolledCourseData: ${enrolledCourseData}`);
 
       for (const course of enrolledCourseData) {
         const startTimeEnrolledCourse = course.timeStart;
@@ -34,20 +31,16 @@ export class ConflictCheckService {
         const locationEnrolledCourse = course.location;
         const dateEnrolledCourse = course.date;
 
-      console.log(`You are already enrolled in ${course.name}, location ${locationEnrolledCourse} starting ${startTimeEnrolledCourse}`);
-
       if(startTimeNewCourse > startTimeEnrolledCourse)
-      //same date, time overlap
+      
       if (dateNewCourse === dateEnrolledCourse && endTimeNewCourse>= startTimeEnrolledCourse) {
-        return 'You are already enrolled at a course at these hours';  
+        return ErrorMessages.timeConflict;  
       }
-      //same day, two locations in morning 
-      //WIP
+      
       if(dateNewCourse === dateEnrolledCourse && locationEnrolledCourse != locationNewCourse){
-        return 'Can\'t attend two courses in the morning at different locations'
+        return ErrorMessages.twoLocationsConflict;
       }
     }
-        
       return false;
       
     } catch (error){

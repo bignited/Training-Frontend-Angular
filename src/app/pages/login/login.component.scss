@@ -1,26 +1,11 @@
-$lightgray: #efeff0;
 $blue: #3B4BF0; 
-
-main {
+ 
+ main {
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     background-image: linear-gradient(to right, #9fbeff, #2833ab);
-}
-
-.login-card {
-    display: flex; 
-}
-
-input[type="text"], input[type="password"]{
-    margin-bottom: 20px;
-    border: none;
-    width: 200px;
-    border-radius: 10px;
-    padding: 10px 20px;
-
-    background-color: #EDF4FF;
 }
 
 input[type="submit"] {
@@ -32,6 +17,11 @@ input[type="submit"] {
     color: white;
     background-color: $blue;
 
+}
+
+.login-card {
+    display: flex; 
+    max-width: 30%;
 }
 
 .image-frame {

@@ -6,10 +6,8 @@
         <div class="login-field">
             <h3>Welcome</h3>
             <form (ngSubmit)="onSubmit()" [formGroup]="loginForm">
-                <label for="username">Username</label><br>
-                <input type="text" name="username" formControlName="username" id="input-username"><br>
-                <label for="password">Password</label><br>
-                <input type="password" name="password" formControlName="password" id="input-password"><br>
+                <app-input [inputType]="'text'" [labelName]="'Username'" [displayName]="'Username'" formControlName="username" />
+                <app-input [inputType]="'password'" [labelName]="'password'" [displayName]="'Password'" formControlName="password" /> 
                 <input type="submit" value="Login" id="button-login">
                 <div class="error-text" *ngIf="loginError" id="error-message">
                     <p>{{ loginError }}</p>

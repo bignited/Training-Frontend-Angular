@@ -3,10 +3,11 @@ import { Component, inject } from '@angular/core';
 import { ReactiveFormsModule, FormControl, Validators, FormGroup } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { Router, RouterModule } from '@angular/router';
+import { InputComponent } from '../../components/input/input.component';
  
 @Component({
   selector: 'app-login',
-  imports: [ReactiveFormsModule, CommonModule, RouterModule],
+  imports: [ReactiveFormsModule, CommonModule, RouterModule, InputComponent],
   templateUrl: 'login.component.html',
   styleUrl: 'login.component.scss'
 })
@@ -34,19 +35,18 @@ export class LoginComponent {
     } else if (this.toHex(usernameValue) !== this.toHex(passwordValue)) {
       console.error('Incorrect Credentials'); 
       this.loginError = "Incorrect Credentials";
-    } else if (this.loginForm.valid){
-      console.log(usernameValue, passwordValue); 
+    } else if (this.loginForm.valid){ 
       this.AuthService.setToken('loggedIn'); 
       this.router.navigateByUrl("overview"); 
     }
   }
   
   toHex(str:string){
-    let match = str.match(/[0-9a-fA-F]+/g); // Extract valid hex parts
-    if (!match) return null; // Return null if no valid hex found
+    let match = str.match(/[0-9a-fA-F]+/g);  
+    if (!match) return null;  
 
-    let hexString = match.join(''); // Join into one continuous hex string
-    let decimalValue = parseInt(hexString, 16); // Convert hex to decimal
+    let hexString = match.join('');  
+    let decimalValue = parseInt(hexString, 16);  
 
     return decimalValue;
   }

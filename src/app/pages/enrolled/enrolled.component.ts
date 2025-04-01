@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NavbarComponent } from '../../components/navbar/navbar.component';
-import { CourseListComponent } from "../../components/course-list/course-list.component";
+import { CourseListComponent } from "../../components/course-list/course.list.component";
 import { Course } from '../../models/course.model';
 import { CourseService } from '../../services/course.service';
 
@@ -34,22 +34,17 @@ export class EnrolledComponent {
   fetchedCourses: Course[] = [];
   enrolledCoursesIds = JSON.parse(sessionStorage.getItem("enrolledCourses") || "[]");
   noCourses: boolean = false;
-  
-  constructor(private courseService: CourseService){
-  
-  }
 
+  courseService = inject(CourseService);
+  
   ngOnInit(){
     this.fetchCourses();
-    
-    console.log(`The courseId retreived was: ${this.enrolledCoursesIds}`);
   }
   
   fetchCourses() {
     this.fetchedCourses = [];
     this.enrolledCoursesIds = JSON.parse(sessionStorage.getItem("enrolledCourses") || "[]");
 
-    //If not enrolled in any courses, display message
     if(this.enrolledCoursesIds.length < 1){
       this.noCourses = true;
     }
@@ -57,7 +52,6 @@ export class EnrolledComponent {
     this.enrolledCoursesIds.forEach((id: number) => {   
       this.courseService.getCourseById(id).subscribe({
         next: (data) => {
-          console.log(data);
           this.fetchedCourses.push(data);
         },
         error: (err) => console.error('Error fetching enrolled courses:', err)
@@ -66,7 +60,6 @@ export class EnrolledComponent {
  }
 
  onCourseUnenrolled(){
-  //refresh shown courses after deleting one
    this.fetchCourses(); 
  }
 }

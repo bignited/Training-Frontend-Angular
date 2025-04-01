@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
-import { CourseListComponent } from '../../components/course-list/course-list.component';
+import { Component, inject, Input, OnInit } from '@angular/core';
+import { CourseListComponent } from '../../components/course-list/course.list.component';
 import { Course } from '../../models/course.model';
 import { CourseService } from '../../services/course.service';
 import { NavbarComponent } from '../../components/navbar/navbar.component';
@@ -18,9 +18,7 @@ export class OverviewComponent implements OnInit {
   enrolledCourses: any = [];
   errorMessage: string | null = null;
 
-  constructor(private courseService: CourseService){
-
-  }
+  courseService = inject(CourseService);
 
   ngOnInit(){
     this.fetchCourses();

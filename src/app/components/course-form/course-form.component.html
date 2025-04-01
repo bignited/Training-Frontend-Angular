@@ -1,0 +1,18 @@
+<div>
+    <form (ngSubmit)="addCourse()" [formGroup]="createCourseForm">
+       <app-input [inputType]="'text'" [labelName]="'course-name'" [displayName]="'Course Name'" formControlName="name"/>
+       <app-input [inputType]="'textarea'" [labelName]="'course-description'" [displayName]="'Description'" formControlName="description" maxlength="240"/>
+       <app-select [name]="'location'" [items]="locationArray" [displayName]="'Location'" formControlName="location" />
+       <app-input [inputType]="'text'" [labelName]="'teacher'" [displayName]="'Course given by'" formControlName="teacher"/>
+       <app-input [inputType]="'date'" [labelName]="'date'" [displayName]="'Date'" formControlName="date" />
+       <app-input [inputType]="'time'" [labelName]="'timeStart'" [displayName]="'Time start'" formControlName="timeStart"/>
+       <app-input [inputType]="'time'" [labelName]="'timeEnd'" [displayName]="'Time end'" formControlName="timeEnd"/>
+       <input type="submit" value="Add Course" [disabled]="!createCourseForm.valid">
+       <div class="error-text" *ngIf="validationError" id="error-message">
+        <p>{{ validationError }}</p>
+        </div>
+        <div class="success-text" *ngIf="successMessage" id="error-message">
+            <p>{{ successMessage }}</p>
+        </div>
+    </form>
+</div>

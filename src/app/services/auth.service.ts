@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
 
 @Injectable({
@@ -6,9 +6,8 @@ import { CanActivate, Router } from '@angular/router';
 })
 export class AuthService implements CanActivate {
 
-   constructor(private router: Router) { }
- 
-  // Store token securely
+  router = inject(Router);
+  
   public setToken(token: string): void {
     sessionStorage.setItem('accesToken', token);
   }
@@ -21,11 +20,11 @@ export class AuthService implements CanActivate {
       return false; 
     }
   }
-  // Retrieve token
+  
   public getToken(): string | null {
     return sessionStorage.getItem('accesToken');
   }
-  // Remove token
+
   public removeToken(): void {
     sessionStorage.removeItem('accesToken');
   }

@@ -1,71 +1,60 @@
 {
   "courses": [
     {
-      "id": 4,
-      "name": "Interior Design",
+      "name": "Cypress",
       "location": "Antwerpen",
-      "teacher": "Mrs Jane",
-      "date": "2025-03-14",
-      "timeStart": "12:55",
-      "timeEnd": "17:00"
-    },
-    {
-      "name": "Cypress Basics",
-      "location": "Leuven",
-      "teacher": "Mr. Smith",
-      "date": "2025-03-17",
-      "timeStart": "08:00",
-      "timeEnd": "12:00",
-      "id": 9
+      "teacher": "Mr Jones",
+      "date": "2025-03-28",
+      "timeStart": "15:00",
+      "timeEnd": "17:00",
+      "id": 1
     },
     {
       "name": "JavaScript",
       "location": "Leuven",
-      "teacher": "Mrs. Jane",
-      "date": "2025-03-10",
+      "teacher": "Jake",
+      "date": "2025-03-31",
+      "timeStart": "10:31",
+      "timeEnd": "12:00",
+      "id": 2
+    },
+    {
+      "name": "Dancing",
+      "location": "Leuven",
+      "teacher": "Pieter",
+      "date": "2025-03-03",
+      "timeStart": "17:27",
+      "timeEnd": "17:27",
+      "id": 3
+    },
+    {
+      "name": "Python",
+      "location": "Leuven",
+      "teacher": "poakgpo",
+      "date": "2025-03-31",
       "timeStart": "10:00",
       "timeEnd": "12:00",
-      "id": 10
+      "id": 4
     },
     {
-      "name": "Spanish",
+      "name": "Pattisserie",
+      "description": "bakken en koken",
       "location": "Leuven",
-      "teacher": "Mrs Conzalez",
-      "date": "2025-03-25",
-      "imageUrl": "https://images.unsplash.com/photo-1485111776963-19787ff041f9?q=80&w=2074&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "timeStart": "12:00",
-      "timeEnd": "16:00",
-      "id": 11
+      "teacher": "awfsgf",
+      "date": "2025-04-21",
+      "timeStart": "15:20",
+      "timeEnd": "17:20",
+      "id": 5
     },
     {
-      "name": "Italian",
-      "location": "Leuven",
-      "teacher": "James",
-      "date": "2025-03-20",
-      "imageUrl": "https://images.unsplash.com/photo-1520175480921-4edfa2983e0f?q=80&w=2067&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "timeStart": "10:00",
-      "timeEnd": "17:00",
-      "id": 12
-    },
-    {
-      "name": "Japanese",
-      "location": "Leuven",
-      "teacher": "Mr Yamako",
-      "date": "2025-03-20",
-      "imageUrl": "https://images.unsplash.com/photo-1528164344705-47542687000d?q=80&w=2092&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "timeStart": "11:00",
-      "timeEnd": "18:00",
-      "id": 13
-    },
-    {
-      "name": "Hindi",
-      "location": "Brussels",
-      "teacher": "Muskaan",
-      "date": "2025-03-20",
-      "imageUrl": "https://images.unsplash.com/photo-1548013146-72479768bada?q=80&w=2352&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "timeStart": "06:00",
-      "timeEnd": "09:00",
-      "id": 15
+      "name": "Javascript",
+      "description": "Leer in 3 sessies alle ins en outs van javascript, inclusief typescript",
+      "location": "Antwerpen",
+      "teacher": "sdgsg",
+      "date": "2025-04-22",
+      "timeStart": "12:15",
+      "timeEnd": "15:15",
+      "id": 6
     }
   ]
 }

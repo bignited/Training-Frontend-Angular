@@ -1,0 +1,3 @@
+
+<label [for]="labelName()">{{ displayName() }}</label><br>
+<input [type]="inputType()" [name]="labelName()" (input)="updateValue($event)" [value]="value"><br>
