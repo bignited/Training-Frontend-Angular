@@ -1,60 +1,64 @@
 {
   "courses": [
     {
-      "name": "Cypress",
-      "location": "Antwerpen",
-      "teacher": "Mr Jones",
-      "date": "2025-03-28",
-      "timeStart": "15:00",
-      "timeEnd": "17:00",
-      "id": 1
-    },
-    {
-      "name": "JavaScript",
-      "location": "Leuven",
-      "teacher": "Jake",
-      "date": "2025-03-31",
-      "timeStart": "10:31",
-      "timeEnd": "12:00",
+      "name": "Motivational Speaking",
+      "description": "Learn to motivate those around you",
+      "location": "Brussels",
+      "teacher": "Logan",
+      "date": "2001-03-03",
+      "timeStart": "10:00",
+      "timeEnd": "19:00",
       "id": 2
     },
     {
-      "name": "Dancing",
-      "location": "Leuven",
-      "teacher": "Pieter",
-      "date": "2025-03-03",
-      "timeStart": "17:27",
-      "timeEnd": "17:27",
-      "id": 3
-    },
-    {
       "name": "Python",
-      "location": "Leuven",
-      "teacher": "poakgpo",
-      "date": "2025-03-31",
-      "timeStart": "10:00",
-      "timeEnd": "12:00",
+      "description": "Learn to use Python to create games",
+      "location": "Brussels",
+      "teacher": "Logan",
+      "date": "2025-04-07",
+      "timeStart": "11:00",
+      "timeEnd": "17:00",
       "id": 4
     },
     {
-      "name": "Pattisserie",
-      "description": "bakken en koken",
-      "location": "Leuven",
-      "teacher": "awfsgf",
-      "date": "2025-04-21",
-      "timeStart": "15:20",
-      "timeEnd": "17:20",
+      "name": "CSS3",
+      "description": "Make websites pretty",
+      "location": "Antwerpen",
+      "teacher": "Mrs Laurence",
+      "date": "2025-04-28",
+      "timeStart": "19:44",
+      "timeEnd": "00:44",
       "id": 5
     },
     {
-      "name": "Javascript",
-      "description": "Leer in 3 sessies alle ins en outs van javascript, inclusief typescript",
+      "name": "Water Filtering",
+      "description": "Filter water by putting in some stones and then putting in some sand and then putting in some gravel",
       "location": "Antwerpen",
-      "teacher": "sdgsg",
-      "date": "2025-04-22",
-      "timeStart": "12:15",
-      "timeEnd": "15:15",
+      "teacher": "zdh",
+      "date": "2025-05-05",
+      "timeStart": "19:44",
+      "timeEnd": "05:44",
       "id": 6
+    },
+    {
+      "name": "Latin",
+      "description": "\"Lorem ipsum dolor sit  ",
+      "location": "Antwerpen",
+      "teacher": "afsdg",
+      "date": "2025-05-01",
+      "timeStart": "18:46",
+      "timeEnd": "19:46",
+      "id": 7
+    },
+    {
+      "name": "eryerythye",
+      "description": "WERWER",
+      "location": "Leuven",
+      "teacher": "EARERT",
+      "date": "2025-04-07",
+      "timeStart": "09:00",
+      "timeEnd": "17:59",
+      "id": 8
     }
   ]
 }

@@ -1,10 +1,9 @@
-
 .error-text {
     font-size: 0.9rem;
-    color: red;
+    color: var(--danger-color);
 }
 
 .success-text {
     font-size: 0.9rem;
-    color: rgb(131, 192, 38);
+    color: var(--success-color);
 }

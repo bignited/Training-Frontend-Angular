@@ -12,7 +12,6 @@ export class CourseService {
   http = inject(HttpClient);
   baseUrl = import.meta.env.NG_APP_API_URL; 
   
-   
   create(course:Course){
     return this.http.post(`${this.baseUrl}/courses`, course);
     }

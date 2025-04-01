@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 @Component({
   selector: 'app-alert-box',
@@ -6,12 +6,12 @@ import { Component, Input } from '@angular/core';
   template: `
     <div class="alert-box">
       <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-      Could not enroll: {{errorMessage}} 
+      Could not enroll: {{errorMessage()}} 
     </div>
   `,
   styles: `
   `
 })
 export class AlertBoxComponent {
-  @Input() errorMessage!:string;
+  errorMessage = input<string>();
 }

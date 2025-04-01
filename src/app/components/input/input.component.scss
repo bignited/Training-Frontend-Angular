@@ -1,12 +1,9 @@
-$blue: #3B4BF0; 
-
 input[type="text"], input[type="password"]{
     margin-bottom: 20px;
     border: none;
     width: 200px;
     border-radius: 10px;
     padding: 10px 20px;
-
     background-color: #EDF4FF;
 }
 
@@ -17,6 +14,5 @@ input[type="submit"] {
     border-radius: 10px;
     padding: 10px 20px;
     color: white;
-    background-color: $blue;
-
+    background-color: var(--blue);
 }

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, inject, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, inject, input, Input, OnInit, output, Output } from '@angular/core';
 import { Course } from '../../models/course.model';
 import { CommonModule } from '@angular/common';
 import { ConflictCheckService } from '../../services/conflict-check.service';
@@ -13,62 +13,62 @@ import { CourseDetailComponent } from '../course-detail/course-detail.component'
 export class CourseListComponent implements OnInit {
 
   @Input() course!: Course;
-  @Input() isEnrolledView: boolean = false;
+  isEnrolledView = input<boolean>(false); 
 
-  @Output() courseUnenrolled = new EventEmitter<void>();
-  @Output() enrollmentError = new EventEmitter<string>();
-  @Output() enrollmentSuccess = new EventEmitter<string>();
-
+  courseUnenrolled = output<void>(); 
+  enrollmentError = output<string>();
+  enrollmentSuccess = output<string>();
+  
   enrolledCourses: any;
-  isEnrolled: boolean = false; 
+  isEnrolled: boolean = false;
 
   conflictCheck = inject(ConflictCheckService);
 
-  constructor(){
+  constructor() {
     const storedCourses = sessionStorage.getItem('enrolledCourses');
     this.enrolledCourses = storedCourses ? JSON.parse(storedCourses) : [];
   }
- 
-  ngOnInit(){
-    if(this.enrolledCourses.includes(this.course.id)){
+
+  ngOnInit() {
+    if (this.enrolledCourses.includes(this.course.id)) {
       this.isEnrolled = true;
     }
   }
 
   toggleEnrollment() {
-    if (this.isEnrolledView) {
-       this.unenroll(this.course.id);
+    if (this.isEnrolledView()) {
+      this.unenroll(this.course.id);
     } else {
       this.enroll(this.course.id);
     }
   }
 
-  async enroll(courseId:number){
+  async enroll(courseId: number) {
 
     const alreadyEnrolled = this.enrolledCourses.includes(this.course.id);
     if (!alreadyEnrolled) {
- 
-    const storedCourses = sessionStorage.getItem('enrolledCourses');
-    this.enrolledCourses = storedCourses ? JSON.parse(storedCourses) : [];
-    
-    let errorMessage = await this.conflictCheck.checkForDateConflict(this.course.id);
-    if(errorMessage){
-      this.enrollmentError.emit(errorMessage); 
-      return; 
+
+      const storedCourses = sessionStorage.getItem('enrolledCourses');
+      this.enrolledCourses = storedCourses ? JSON.parse(storedCourses) : [];
+
+      let errorMessage = await this.conflictCheck.checkForDateConflict(this.course.id);
+      if (errorMessage) {
+        this.enrollmentError.emit(errorMessage);
+        return;
+      } else {
+        this.enrollmentSuccess.emit('Enrolled succesfully');
+      }
+
+      this.enrolledCourses.push(courseId);
+      this.isEnrolled = true;
+      sessionStorage.setItem('enrolledCourses', JSON.stringify(this.enrolledCourses));
+
     } else {
-      this.enrollmentSuccess.emit('Enrolled succesfully');
-    }
-     
-    this.enrolledCourses.push(courseId); 
-    this.isEnrolled = true; 
-    sessionStorage.setItem('enrolledCourses', JSON.stringify(this.enrolledCourses));
-    
-    } else {
-      return; 
+      return;
     }
   }
 
-  unenroll(courseId:number){
+  unenroll(courseId: number) {
 
     const index = this.enrolledCourses.indexOf(courseId);
     this.enrolledCourses.splice(index, 1);

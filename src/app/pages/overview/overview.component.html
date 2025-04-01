@@ -1,7 +1,8 @@
 <main>
-     <app-navbar />
-     <app-alert-box *ngIf="errorMessage" [errorMessage]="errorMessage"></app-alert-box>
+    <app-navbar />
+    <app-alert-box *ngIf="errorMessage" [errorMessage]="errorMessage"></app-alert-box>
     <div class="list-items">
-        <app-course-list *ngFor="let Course of courseList" [course]="Course" (enrollmentError)="handleError($event)"></app-course-list>
+        <app-course-list *ngFor="let Course of courseList" [course]="Course"
+            (enrollmentError)="handleError($event)"></app-course-list>
     </div>
 </main>
