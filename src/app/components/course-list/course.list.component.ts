@@ -56,7 +56,8 @@ export class CourseListComponent implements OnInit {
         this.enrollmentError.emit(errorMessage);
         return;
       } else {
-        this.enrollmentSuccess.emit('Enrolled succesfully');
+        let successMessage = "Enrolled successfully";
+        this.enrollmentSuccess.emit(successMessage);
       }
 
       this.enrolledCourses.push(courseId);

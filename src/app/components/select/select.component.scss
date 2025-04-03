@@ -1,0 +1,12 @@
+@mixin input-style($bg-color: #ffffff) {
+    margin-bottom: 20px;
+    border: none;
+    width: 200px;
+    border-radius: 10px;
+    padding: 10px 20px;
+    background-color: $bg-color;
+  }
+
+  select {
+    @include input-style();
+  }

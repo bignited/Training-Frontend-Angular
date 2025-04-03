@@ -27,6 +27,7 @@ export class CourseFormComponent {
     'Brussels',
     'Gent'
   ]
+  
   constructor() {
     this.createCourseForm = new FormGroup({
       name: new FormControl('', Validators.required),

@@ -31,8 +31,6 @@ export class ConflictCheckService {
         const locationEnrolledCourse = course.location;
         const dateEnrolledCourse = course.date;
 
-      if(startTimeNewCourse > startTimeEnrolledCourse)
-      
       if (dateNewCourse === dateEnrolledCourse && endTimeNewCourse>= startTimeEnrolledCourse) {
         return ErrorMessages.timeConflict;  
       }
@@ -45,6 +43,6 @@ export class ConflictCheckService {
       
     } catch (error){
       console.error('Error fetching courses:', error);
-      return false;
+      return;
     }
 }}

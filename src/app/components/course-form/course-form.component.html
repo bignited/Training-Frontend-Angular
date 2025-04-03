@@ -1,7 +1,7 @@
 <div>
     <form (ngSubmit)="addCourse()" [formGroup]="createCourseForm">
        <app-input [inputType]="'text'" [labelName]="'course-name'" [displayName]="'Course Name'" formControlName="name"/>
-       <app-input [inputType]="'textarea'" [labelName]="'course-description'" [displayName]="'Description'" formControlName="description" maxlength="240"/>
+       <app-input [inputType]="'text'" [labelName]="'course-description'" [displayName]="'Description'" formControlName="description" maxlength="240"/>
        <app-select [name]="'location'" [items]="locationArray" [displayName]="'Location'" formControlName="location" />
        <app-input [inputType]="'text'" [labelName]="'teacher'" [displayName]="'Course given by'" formControlName="teacher"/>
        <app-input [inputType]="'date'" [labelName]="'date'" [displayName]="'Date'" formControlName="date" />

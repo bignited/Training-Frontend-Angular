@@ -17,6 +17,7 @@ export class OverviewComponent implements OnInit {
   courseList:any = [];
   enrolledCourses: any = [];
   errorMessage: string | null = null;
+  successMessage: string | null = null;
 
   courseService = inject(CourseService);
 
@@ -35,5 +36,14 @@ export class OverviewComponent implements OnInit {
 
   handleError(error:string){
     this.errorMessage = error;
+  }
+
+  handleSuccess(successMessage:string){
+    this.successMessage = successMessage; 
+  }
+  
+  clearMessage() {
+    this.errorMessage = null;
+    this.successMessage = null;
   }
 }

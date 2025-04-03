@@ -11,4 +11,5 @@ export class CourseDetailComponent {
   detail = input<any>(); 
   iconName = input<string>();
   iconClass = input<string>();
+  
 }

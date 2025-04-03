@@ -1,5 +1,24 @@
 {
   "courses": [
-    
+    {
+      "name": "Cypress",
+      "description": "Learn testing with Cypress",
+      "location": "Gent",
+      "teacher": "Mr. Bean",
+      "date": "2019-01-01",
+      "timeStart": "09:00",
+      "timeEnd": "12:00",
+      "id": 1
+    },
+    {
+      "name": "Selenium",
+      "description": "Learn to write tests in Selenium",
+      "location": "Gent",
+      "teacher": "Mr Paul",
+      "date": "2019-01-01",
+      "timeStart": "08:00",
+      "timeEnd": "12:00",
+      "id": 2
+    }
   ]
 }
