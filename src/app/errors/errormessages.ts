@@ -1,4 +1,5 @@
 export const ErrorMessages = {
     timeConflict: `You already have a course at these hours`,
-    twoLocationsConflict: `You can\'t sign up for two locations on the same morning`
+    twoLocationsConflictMorning: `Can\'t sign up for two locations on the same morning`,
+    twoLocationsConflictAfternoon: `Can\'t sign up for two locations on the same afternoon`
 }

@@ -10,6 +10,13 @@ export class ConflictCheckService {
 
   courseService = inject(CourseService);
 
+  parseTime(time: string){
+    const [hours, minutes] = time.split(":").map(Number);
+    const date = new Date();
+    date.setHours(hours, minutes, 0, 0);
+    return date;
+  }
+
   async checkForDateConflict(newCourseId:number){
     const storedCourses = (sessionStorage.getItem('enrolledCourses'));
     const enrolledCourses = storedCourses ? JSON.parse(storedCourses) : [];
@@ -31,12 +38,22 @@ export class ConflictCheckService {
         const locationEnrolledCourse = course.location;
         const dateEnrolledCourse = course.date;
 
-      if (dateNewCourse === dateEnrolledCourse && endTimeNewCourse>= startTimeEnrolledCourse) {
+      if (dateNewCourse === dateEnrolledCourse && 
+          this.parseTime(startTimeNewCourse) < this.parseTime(endTimeEnrolledCourse) && 
+          this.parseTime(startTimeEnrolledCourse) < this.parseTime(endTimeNewCourse)) {
         return ErrorMessages.timeConflict;  
       }
       
-      if(dateNewCourse === dateEnrolledCourse && locationEnrolledCourse != locationNewCourse){
-        return ErrorMessages.twoLocationsConflict;
+      if(dateNewCourse === dateEnrolledCourse && 
+        locationEnrolledCourse != locationNewCourse && 
+        endTimeNewCourse <= "12:00" && endTimeEnrolledCourse <= "12:00" ){
+        return ErrorMessages.twoLocationsConflictMorning;
+      }
+
+      if(dateNewCourse === dateEnrolledCourse && 
+        locationEnrolledCourse != locationNewCourse && 
+        endTimeNewCourse >= "12:00" && endTimeEnrolledCourse >= "12:00" ){
+        return ErrorMessages.twoLocationsConflictAfternoon;
       }
     }
       return false;

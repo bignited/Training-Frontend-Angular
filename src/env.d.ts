@@ -2,7 +2,7 @@
   readonly NODE_ENV: string;
   
   readonly NG_APP_API_URL: string; 
-  [key: string]: any;
+  [key: string];
 }
 
 declare interface ImportMeta {

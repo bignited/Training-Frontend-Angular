@@ -1,5 +1,10 @@
- div {
+.form-card {
    background-color: #edf4ff;
-   padding: 50px 75px;
-   border-radius: 20px;
+   border-radius: 10px;
+   padding: 50px;
+ }
+
+ form {
+  display: flex;
+  gap: 50px;
  }

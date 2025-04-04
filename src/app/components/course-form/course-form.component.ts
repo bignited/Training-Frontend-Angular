@@ -5,10 +5,11 @@ import { catchError, throwError } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { InputComponent } from '../input/input.component';
 import { SelectComponent } from '../select/select.component';
+import { TextareaComponent } from "../textarea/textarea.component";
 
 @Component({
   selector: 'app-course-form',
-  imports: [ReactiveFormsModule, CommonModule, InputComponent, SelectComponent],
+  imports: [ReactiveFormsModule, CommonModule, InputComponent, SelectComponent, TextareaComponent],
   templateUrl: 'course-form.component.html',
   styleUrl: 'course-form.component.scss'
 })
@@ -17,6 +18,8 @@ export class CourseFormComponent {
   validationError: string | undefined;
   successMessage: string | undefined;
 
+  tooLong: boolean = false; 
+  
   @Output() courseAdded = new EventEmitter<void>();
   courseService = inject(CourseService);
 

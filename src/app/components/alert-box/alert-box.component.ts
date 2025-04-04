@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component, input, output } from '@angular/core';
+import { Component, Input, input, output } from '@angular/core';
+import { Course } from '../../models/course.model';
 
 @Component({
   selector: 'app-alert-box',
@@ -17,12 +18,13 @@ import { Component, input, output } from '@angular/core';
     </div>
   `,
   styles: `
+  
   `
 })
 export class AlertBoxComponent {
   errorMessage = input<string | null>();
   successMessage = input<string | null>();
-
+   
   closeEvent = output<void>();
 
   close() {

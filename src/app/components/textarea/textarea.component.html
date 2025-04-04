@@ -1,6 +1,6 @@
-<label [for]="name()">{{ displayName() }}</label><br>
+<label [for]="labelName()">{{ displayName() }}</label><br>
 <textarea 
-  [name]="name()" 
-  [value]="value()" 
+  [name]="labelName()"
+  [value]="value" 
   (input)="onInputChange($event)">
 </textarea><br>

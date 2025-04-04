@@ -29,7 +29,6 @@ export class InputComponent implements ControlValueAccessor {
     this.touched = true;
   };
   
-
   writeValue(value: string): void {
     this.value = value || '';
   }

@@ -1,8 +1,10 @@
+import { CommonModule } from '@angular/common';
 import { Component, forwardRef, input, output } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
   selector: 'app-textarea',
+  imports: [FormsModule, CommonModule],
   templateUrl: './textarea.component.html',
   styleUrl: './textarea.component.scss',
   providers: [
@@ -15,16 +17,16 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 })
 export class TextareaComponent implements ControlValueAccessor {
   
-  name = input<string>(); 
+  labelName = input<string>(); 
   displayName = input<string>();
-  value = input<string>(''); 
+  value: string = ''; 
 
   valueChange = output<string>();
 
-  onChange: (value: any) => void = () => {};
-  onTouched: () => void = () => {};
+  onChange = (value: string) => {};
+  onTouched = () => {};
 
-  writeValue(value: any): void {
+  writeValue(value: string): void {
     this.value = value;
   }
 
@@ -38,8 +40,7 @@ export class TextareaComponent implements ControlValueAccessor {
 
   onInputChange(event: Event) {
     const newValue = (event.target as HTMLTextAreaElement).value;
-    this.value();  
+    this.value = newValue;  
     this.onChange(newValue);
-    this.valueChange.emit(newValue);
   }
 }

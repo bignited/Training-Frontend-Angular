@@ -16,6 +16,10 @@
     &:hover{
         background-color: #2e39d4;
     }
+
+    &:disabled{
+        background-color: #c6cfff;
+    }
 }
 
 .button-danger {

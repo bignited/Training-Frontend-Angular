@@ -10,25 +10,25 @@ import { Observable } from 'rxjs';
 export class CourseService {
  
   http = inject(HttpClient);
-  baseUrl = import.meta.env.NG_APP_API_URL; 
+  baseUrl = import.meta.env.NG_APP_API_URL + '/courses'; 
   
   create(course:Course){
-    return this.http.post(`${this.baseUrl}/courses`, course);
+    return this.http.post(`${this.baseUrl}`, course);
     }
   
   getAllCourses(): Observable<Course[]> {
-    return this.http.get<Course[]>(`${this.baseUrl}/courses`);
+    return this.http.get<Course[]>(`${this.baseUrl}`);
   }
   
   getCourseById(id:number): Observable<Course>{
-    return this.http.get<Course>(`${this.baseUrl}/courses/` + id );
+    return this.http.get<Course>(`${this.baseUrl}` + id );
   }
 
   deleteCourseById(id:string){
-    return this.http.delete(`${this.baseUrl}/courses/` + id); 
+    return this.http.delete(`${this.baseUrl}` + id); 
   }
 
   editCourseById(id:string, course:Course){
-    return this.http.put(`${this.baseUrl}/courses/` + id, course)
+    return this.http.put(`${this.baseUrl}` + id, course)
   }
 }
