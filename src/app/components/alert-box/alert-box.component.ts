@@ -17,9 +17,7 @@ import { Course } from '../../models/course.model';
     </div>
     </div>
   `,
-  styles: `
-  
-  `
+  styles: ""
 })
 export class AlertBoxComponent {
   errorMessage = input<string | null>();
