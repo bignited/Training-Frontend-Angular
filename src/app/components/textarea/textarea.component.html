@@ -1,0 +1,6 @@
+<label [for]="labelName()">{{ displayName() }}</label><br>
+<textarea 
+  [name]="labelName()"
+  [value]="value" 
+  (input)="onInputChange($event)">
+</textarea><br>

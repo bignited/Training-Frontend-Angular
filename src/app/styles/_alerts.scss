@@ -1,0 +1,27 @@
+@use './variables' as *;
+
+.alert-box{
+ position: fixed;
+ left: 50%;
+ top: 50%;
+ transform: translate(-50%, -50%);
+ background-color: $danger-color;
+ color: white;
+ padding: 2% 5%;
+ margin: auto;
+ box-shadow: rgba(100, 100, 111, 0.4) 0px 7px 29px 0px;
+ border-radius: 10px;
+}
+
+.success-box{
+ position: fixed;
+ left: 50%;
+ top: 50%;
+ transform: translate(-50%, -50%);
+ background-color: $success-color;
+ color: white;
+ padding: 2% 5%;
+ margin: auto;
+ box-shadow: rgba(100, 100, 111, 0.4) 0px 7px 29px 0px;
+ border-radius: 10px;
+}

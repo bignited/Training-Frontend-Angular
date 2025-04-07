@@ -1,0 +1,50 @@
+p {
+  font-size: 0.9rem;
+  flex-grow: 1;
+}
+
+h2 {
+  font-size: 1.5rem;
+}
+
+button {
+  margin-top: 5%;
+}
+
+.list-item {
+  display: flex;
+  flex-direction: column;
+  background-color: #edf4ff;
+  margin: auto;
+  border-radius: 20px;
+  min-width: 300px;
+  width: 25vw;
+  max-width: 400px;
+  height: 100%;
+}
+
+.course-data {
+  padding: 1rem 2rem;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.course-image {
+
+  figure {
+    margin: 0;
+    padding: 0;
+    aspect-ratio: 16 / 9;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    overflow: hidden;
+  }
+
+  img {
+    object-fit: contain;
+    width: 100%;
+    transform-origin: center;
+  }
+}

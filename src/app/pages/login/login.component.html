@@ -1,0 +1,18 @@
+<main>
+    <div class="login-card">
+        <div class="image-frame">
+            <img src="loginImage.jpg" alt="Smiling students">
+        </div>
+        <div class="login-field">
+            <h3>Welcome</h3>
+            <form (ngSubmit)="onSubmit()" [formGroup]="loginForm">
+                <app-input [inputType]="'text'" [labelName]="'Username'" [displayName]="'Username'" formControlName="username" [inputId]="'input-username'" [isLogin]="true" />
+                <app-input [inputType]="'password'" [labelName]="'password'" [displayName]="'Password'" formControlName="password" [inputId]="'input-password'" [isLogin]="true"/> 
+                <input type="submit" value="Login" id="button-login">
+                <div class="error-text" *ngIf="loginError" id="error-message">
+                    <p>{{ loginError }}</p>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>

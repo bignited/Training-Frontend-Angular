@@ -1,0 +1,40 @@
+@use 'variables' as *; 
+
+@mixin basic-button-layout {
+    color: white;
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    padding: 10px 30px;
+}
+
+.button-primary {
+    @include basic-button-layout;
+    background-color: $primary-color;
+
+    &:hover{
+        background-color: #2e39d4;
+    }
+
+    &:disabled{
+        background-color: #c6cfff;
+    }
+}
+
+.button-danger {
+   @include basic-button-layout;
+    background-color: $danger-color;
+
+   &:hover{
+    background-color: #d43535;
+   }
+}
+
+.button-success {
+    @include basic-button-layout;
+    background-color: $dark-blue;
+}
+
+button, input[type=submit] {
+    cursor: pointer;
+}    

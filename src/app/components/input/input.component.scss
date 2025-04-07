@@ -1,0 +1,18 @@
+@mixin input-style() {
+    margin-bottom: 20px;
+    border: none;
+    width: 200px;
+    border-radius: 10px;
+    padding: 10px 20px;
+  }
+
+  input[type="text"], 
+  input[type="password"],
+  input[type="time"],
+  input[type="Date"] {
+    @include input-style();
+  }
+
+  .blue-background {
+    background-color: var(--light-blue);
+  }
