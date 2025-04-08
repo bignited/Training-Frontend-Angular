@@ -13,7 +13,6 @@ import { Router } from '@angular/router';
       <app-navbar />
       <app-course-form (previewCourse)="sendForm($event)" />
     </main>
-
   `,
   styles: `
   main {
