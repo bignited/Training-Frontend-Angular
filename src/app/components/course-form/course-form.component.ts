@@ -68,8 +68,8 @@ export class CourseFormComponent implements OnInit {
 
   validateTime(control: AbstractControl): ValidationErrors | null {
     const form = control as FormGroup;
-    let startTime = form.get('timeStart')?.value;
-    let endTime = form.get('timeEnd')?.value;
+    const startTime = form.get('timeStart')?.value;
+    const endTime = form.get('timeEnd')?.value;
 
     if (endTime < startTime) {
       return { endBeforeStart: true }
@@ -81,7 +81,7 @@ export class CourseFormComponent implements OnInit {
   }
 
   setCurrentDate() {
-    let today = new Date();
+    const today = new Date();
     this.currentDate = today;
     this.currentDateISO = today.toISOString().split('T')[0];
   }
