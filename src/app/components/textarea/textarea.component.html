@@ -2,5 +2,6 @@
 <textarea 
   [name]="labelName()"
   [value]="value" 
-  (input)="onInputChange($event)">
+  (input)="onInputChange($event)"
+  [attr.maxlength]="maxlength()">
 </textarea><br>

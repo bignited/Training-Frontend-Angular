@@ -4,6 +4,7 @@ import { OverviewComponent } from './pages/overview/overview.component';
 import { CreateCourseComponent } from './pages/create-course/create-course.component';
 import { EnrolledComponent } from './pages/enrolled/enrolled.component';
 import { AuthService } from './services/auth.service';
+import { SummaryComponent } from './pages/summary/summary.component';
 
 export const routes: Routes = [{
     path: '',
@@ -22,5 +23,10 @@ export const routes: Routes = [{
 {
     path: 'enrolled',
     component: EnrolledComponent,
+    canActivate: [AuthService]
+},
+{
+    path: 'summary',
+    component: SummaryComponent,
     canActivate: [AuthService]
 }];

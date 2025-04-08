@@ -17,15 +17,15 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 })
 export class SelectComponent implements ControlValueAccessor {
 
-  name = input<string>(); 
-  items = input<any[]>([]); 
+  name = input<string>();
+  items = input<any[]>([]);
   displayName = input<string>();
-  selectedValue = ''; 
+  selectedValue = '';
 
   selectionChange = output<string>();
 
-  onChange: (value: any) => void = () => {};
-  onTouched: () => void = () => {};
+  onChange = (value: any) => { };
+  onTouched = () => { };
 
   writeValue(value: any): void {
     this.selectedValue = value;

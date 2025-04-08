@@ -8,8 +8,8 @@ import { Component, input } from '@angular/core';
 })
 export class CourseDetailComponent {
 
-  detail = input<any>(); 
+  detail = input<any>();
   iconName = input<string>();
   iconClass = input<string>();
-  
+
 }

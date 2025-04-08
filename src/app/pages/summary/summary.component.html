@@ -1,0 +1,30 @@
+<main>
+    <app-navbar></app-navbar>
+    <div class="summary-card">
+        <div class="left-column">
+            <h2>Review course</h2>
+            <p>Please confirm everything is correct. <br> On the right is a preview of how your course will appear</p>
+            <p><b>Name:</b> {{course?.name}}</p>
+            <p><b>Description:</b> {{course?.description}} </p>
+            <p><b>Teacher:</b> {{course?.teacher}}</p>
+            <p><b>Date:</b> {{course?.date}}</p>
+            <p><b>Start time:</b> {{course?.timeStart}}</p>
+            <p><b>End time:</b> {{course?.timeEnd}}</p>
+            <div class="actions">
+                  <button (click)="onApprove()" class="button-primary">Approve</button>
+                  <button (click)="onEdit()" class="button-primary">Edit</button>
+                  <button (click)="onCancel()" class="button-danger">Discard</button>
+            </div> 
+        </div>
+        <div>
+             <div *ngIf="course" class="preview-card">
+                <app-course-list [course]="course"  />
+                
+              </div>
+              <div *ngIf="!course">
+                <p>No course data found.</p>
+                <button routerLink="/create-course">Back to form</button>
+              </div>
+        </div>
+    </div>
+</main>

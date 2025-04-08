@@ -16,15 +16,16 @@ import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/f
   ],
 })
 export class TextareaComponent implements ControlValueAccessor {
-  
-  labelName = input<string>(); 
+
+  labelName = input<string>();
   displayName = input<string>();
-  value: string = ''; 
+  maxlength = input<number>();
+  value: string = '';
 
   valueChange = output<string>();
 
-  onChange = (value: string) => {};
-  onTouched = () => {};
+  onChange = (value: string) => { };
+  onTouched = () => { };
 
   writeValue(value: string): void {
     this.value = value;
@@ -40,7 +41,7 @@ export class TextareaComponent implements ControlValueAccessor {
 
   onInputChange(event: Event) {
     const newValue = (event.target as HTMLTextAreaElement).value;
-    this.value = newValue;  
+    this.value = newValue;
     this.onChange(newValue);
   }
 }

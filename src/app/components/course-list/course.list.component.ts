@@ -13,12 +13,12 @@ import { CourseDetailComponent } from '../course-detail/course-detail.component'
 export class CourseListComponent implements OnInit {
 
   @Input() course!: Course;
-  isEnrolledView = input<boolean>(false); 
+  isEnrolledView = input<boolean>(false);
 
-  courseUnenrolled = output<void>(); 
+  courseUnenrolled = output<void>();
   enrollmentError = output<string>();
   enrollmentSuccess = output<string>();
-  
+
   enrolledCourses: any;
   isEnrolled: boolean = false;
 
@@ -51,12 +51,12 @@ export class CourseListComponent implements OnInit {
       const storedCourses = sessionStorage.getItem('enrolledCourses');
       this.enrolledCourses = storedCourses ? JSON.parse(storedCourses) : [];
 
-      let errorMessage = await this.conflictCheck.checkForDateConflict(this.course.id);
+      const errorMessage = await this.conflictCheck.checkForDateConflict(this.course.id);
       if (errorMessage) {
         this.enrollmentError.emit(errorMessage);
         return;
       } else {
-        let successMessage = "Enrolled successfully";
+        const successMessage = "Enrolled successfully";
         this.enrollmentSuccess.emit(successMessage);
       }
 
