@@ -13,12 +13,12 @@ import { CourseDetailComponent } from '../course-detail/course-detail.component'
 export class CourseListComponent implements OnInit {
 
   @Input() course!: Course;
-  isEnrolledView = input<boolean>(false); 
+  isEnrolledView = input<boolean>(false);
 
-  courseUnenrolled = output<void>(); 
+  courseUnenrolled = output<void>();
   enrollmentError = output<string>();
   enrollmentSuccess = output<string>();
-  
+
   enrolledCourses: any;
   isEnrolled: boolean = false;
 

@@ -18,20 +18,20 @@ export class EnrolledComponent {
   noCourses: boolean = false;
 
   courseService = inject(CourseService);
-  
-  ngOnInit(){
+
+  ngOnInit() {
     this.fetchCourses();
   }
-  
+
   fetchCourses() {
     this.fetchedCourses = [];
     this.enrolledCoursesIds = JSON.parse(sessionStorage.getItem("enrolledCourses") || "[]");
 
-    if(this.enrolledCoursesIds.length < 1){
+    if (this.enrolledCoursesIds.length < 1) {
       this.noCourses = true;
     }
 
-    this.enrolledCoursesIds.forEach((id: number) => {   
+    this.enrolledCoursesIds.forEach((id: number) => {
       this.courseService.getCourseById(id).subscribe({
         next: (data) => {
           this.fetchedCourses.push(data);
@@ -39,9 +39,9 @@ export class EnrolledComponent {
         error: (err) => console.error('Error fetching enrolled courses:', err)
       });
     })
- }
+  }
 
- onCourseUnenrolled(){
-   this.fetchCourses(); 
- }
+  onCourseUnenrolled() {
+    this.fetchCourses();
+  }
 }

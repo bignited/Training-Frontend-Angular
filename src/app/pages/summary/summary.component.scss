@@ -1,0 +1,29 @@
+main {
+display: flex;
+flex-direction: column;
+align-items: center;
+}
+
+.summary-card {
+display: flex;
+align-items: center;
+gap: 10%;
+background-color: var(--light-blue);
+padding:  2% 10%;
+border-radius: 10px;
+}
+
+.left-column {
+max-width: 400px;
+}
+
+.preview-card {
+border-radius: 20px;
+box-shadow: 6px 6px 20px rgba(0, 0, 255, 0.2);
+}
+
+.actions {
+display: flex;
+gap: 5px;
+margin-top: 5%;
+}

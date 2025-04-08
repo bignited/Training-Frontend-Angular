@@ -1,0 +1,21 @@
+version: 0.2
+env:
+  variables:
+    APP_NAME: "training-frontend-angular"
+phases:
+  install:
+    runtime-versions:
+      nodejs: 14.x
+    commands:
+      - echo install process started
+  pre-build:
+    commands:
+      - echo installing dependencies...
+      - npm install 
+      - npm install -g @angular/cli
+  build:
+    commands:
+      - echo building...
+      - ng build --configuration=production
+      - cd dist/$APP_NAME
+      - aws s3 sync . s3://training-frontend-angular 

@@ -22,7 +22,7 @@ import { Course } from '../../models/course.model';
 export class AlertBoxComponent {
   errorMessage = input<string | null>();
   successMessage = input<string | null>();
-   
+
   closeEvent = output<void>();
 
   close() {

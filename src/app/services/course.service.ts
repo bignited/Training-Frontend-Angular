@@ -20,14 +20,14 @@ export class CourseService {
   }
   
   getCourseById(id:number): Observable<Course>{
-    return this.http.get<Course>(`${this.baseUrl}` + id );
+    return this.http.get<Course>(`${this.baseUrl}/` + id );
   }
 
   deleteCourseById(id:string){
-    return this.http.delete(`${this.baseUrl}` + id); 
+    return this.http.delete(`${this.baseUrl}/` + id); 
   }
 
   editCourseById(id:string, course:Course){
-    return this.http.put(`${this.baseUrl}` + id, course)
+    return this.http.put(`${this.baseUrl}/` + id, course)
   }
 }

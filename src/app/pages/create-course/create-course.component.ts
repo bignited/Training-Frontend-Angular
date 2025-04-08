@@ -1,6 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { CourseFormComponent } from '../../components/course-form/course-form.component';
 import { NavbarComponent } from '../../components/navbar/navbar.component';
+import { Course } from '../../models/course.model';
+import { DraftService } from '../../services/draft.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-course',
@@ -8,7 +11,7 @@ import { NavbarComponent } from '../../components/navbar/navbar.component';
   template: `
     <main>
       <app-navbar />
-      <app-course-form />
+      <app-course-form (previewCourse)="sendForm($event)" />
     </main>
 
   `,
@@ -23,4 +26,14 @@ import { NavbarComponent } from '../../components/navbar/navbar.component';
 })
 export class CreateCourseComponent {
 
+  draftService = inject(DraftService);
+  router = inject(Router);
+
+  formData!: Course;
+  newCourseData: any[] = [];
+
+  sendForm(course: Course) {
+    this.draftService.setDraft(course);
+    this.router.navigate(['/summary']);
+  }
 }

@@ -15,20 +15,21 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR, FormsModule } from '@angular/f
 })
 export class InputComponent implements ControlValueAccessor {
 
-  inputType = input<string>(); 
+  inputType = input<string>();
   labelName = input<string>();
   displayName = input<string>();
-  inputId = input<string>(); 
+  inputId = input<string>();
+  minDate = input<string>();
   isLogin = input<boolean>(false);
-  
+
   value: string = '';
   touched = false;
-   
-  onChange = (value: string) => {};
+
+  onChange = (value: string) => { };
   onTouched = () => {
     this.touched = true;
   };
-  
+
   writeValue(value: string): void {
     this.value = value || '';
   }

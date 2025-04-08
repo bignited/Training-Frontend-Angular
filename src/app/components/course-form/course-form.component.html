@@ -1,20 +1,34 @@
 <div class="form-card">
     <div>
         <h2>Create a new course</h2>
-        <form (ngSubmit)="addCourse()" [formGroup]="createCourseForm">
+        <form (ngSubmit)="submitForm()" [formGroup]="createCourseForm">
                <div class="left-column">
                    <app-input [inputType]="'text'" [labelName]="'course-name'" [displayName]="'Course Name'" formControlName="name" />
-                   <p class="error-text" *ngIf="createCourseForm.get('name')?.errors?.['required'] && createCourseForm.get('name')?.touched">Please enter a course name</p>
-                   <app-textarea [labelName]="'description'" [displayName]="'Description'" formControlName="description" maxlength="240"></app-textarea>
+                   <p class="error-text" *ngIf="createCourseForm.get('name')?.invalid && createCourseForm.get('name')?.touched">Please enter a course name</p>
+                   
+                   <app-textarea [labelName]="'description'" [displayName]="'Description'" formControlName="description" [maxlength]="240" ></app-textarea>
                    <p class="error-text" *ngIf="createCourseForm.get('description')?.invalid && createCourseForm.get('description')?.touched">Please enter a description</p>
+                   
                    <app-select [name]="'location'" [items]="locationArray" [displayName]="'Location'" formControlName="location" />
-                   <app-input [inputType]="'text'" [labelName]="'teacher'" [displayName]="'Course given by'" formControlName="teacher"/>
-                   <input type="submit" value="Add Course" class="button-primary" [disabled]="!createCourseForm.valid">
+                   <p class="error-text" *ngIf="createCourseForm.get('location')?.invalid && createCourseForm.get('location')?.touched">Please select a location</p>
+                   
+                   <input type="submit" value="Add Course" class="button-primary">
                </div>
                <div class="right-column">
-                   <app-input [inputType]="'date'" [labelName]="'date'" [displayName]="'Date'" formControlName="date" />
+                   <app-input [inputType]="'text'" [labelName]="'teacher'" [displayName]="'Course given by'" formControlName="teacher"/>
+                   <p class="error-text" *ngIf="createCourseForm.get('teacher')?.invalid && createCourseForm.get('teacher')?.touched">Please enter the teacher's name</p>
+                   
+                   <app-input [inputType]="'date'" [labelName]="'date'" [displayName]="'Date'" formControlName="date" [minDate]="currentDateISO" />
+                   
+                   <p class="error-text" *ngIf="createCourseForm.get('date')?.touched && createCourseForm.get('date')?.value < currentDateISO">Date can't be in the past</p>
+                   
                    <app-input [inputType]="'time'" [labelName]="'timeStart'" [displayName]="'Time start'" formControlName="timeStart"/>
+                   <p class="error-text" *ngIf="createCourseForm.get('timeStart')?.invalid && createCourseForm.get('timeStart')?.touched">Please select the start time</p>
+                   
                    <app-input [inputType]="'time'" [labelName]="'timeEnd'" [displayName]="'Time end'" formControlName="timeEnd"/>
+                   <p class="error-text" *ngIf="createCourseForm.get('timeEnd')?.invalid && createCourseForm.get('timeEnd')?.touched">Please select the end time</p>
+                   <p class="error-text" *ngIf="createCourseForm.errors?.['endBeforeStart']">End time can't be before starttime</p>
+                   <p class="error-text" *ngIf="createCourseForm.errors?.['startAfterEnd']">Starttime can't be after endtime</p>
                </div>
         
            <div class="error-text" *ngIf="validationError" id="error-message">
