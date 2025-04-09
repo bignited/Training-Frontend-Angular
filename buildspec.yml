@@ -1,7 +1,7 @@
 version: 0.2
 env:
   variables:
-    APP_NAME: "training-frontend-angular"
+    APP_NAME: 'training-frontend-angular'
 phases:
   install:
     runtime-versions:
@@ -20,5 +20,5 @@ phases:
 artifacts:
   files:
   - '**/*'
-  base-directory: 'dist/${APP_NAME}'
+  base-directory: 'dist/training-frontend-angular'
   
