@@ -20,5 +20,6 @@ phases:
 artifacts:
   files:
   - '**/*'
+  discard-paths: no
   base-directory: 'dist/training-frontend-angular'
   
