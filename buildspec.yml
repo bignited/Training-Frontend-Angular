@@ -1,14 +1,14 @@
 version: 0.2
 env:
   variables:
-    APP_NAME: "training-frontend-angular"
+    APP_NAME: 'training-frontend-angular'
 phases:
   install:
     runtime-versions:
-      nodejs: 14.x
+      nodejs: 20
     commands:
       - echo install process started
-  pre-build:
+  pre_build:
     commands:
       - echo installing dependencies...
       - npm install 
@@ -17,5 +17,9 @@ phases:
     commands:
       - echo building...
       - ng build --configuration=production
-      - cd dist/$APP_NAME
-      - aws s3 sync . s3://training-frontend-angular 
+artifacts:
+  files:
+  - '**/*'
+  discard-paths: no
+  base-directory: dist/training-frontend-angular
+  
