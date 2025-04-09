@@ -17,5 +17,8 @@ phases:
     commands:
       - echo building...
       - ng build --configuration=production
-      - cd dist/${APP_NAME}
-      - aws s3 sync . s3://training-frontend-angular --delete
+artifacts:
+  files:
+  - '**/*'
+  base-directory: 'dist/${APP_NAME}'
+  
