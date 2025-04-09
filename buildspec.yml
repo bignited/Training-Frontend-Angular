@@ -5,7 +5,7 @@ env:
 phases:
   install:
     runtime-versions:
-      nodejs: 14.x
+      nodejs: 20
     commands:
       - echo install process started
   pre_build:
@@ -17,5 +17,5 @@ phases:
     commands:
       - echo building...
       - ng build --configuration=production
-      - cd dist/$APP_NAME
-      - aws s3 sync . s3://training-frontend-angular 
+      - cd dist/${APP_NAME}
+      - aws s3 sync . s3://training-frontend-angular --delete

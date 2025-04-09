@@ -20,7 +20,7 @@
         "build": {
           "builder": "@ngx-env/builder:application",
           "options": {
-            "outputPath": "dist/course-application",
+            "outputPath": "dist/training-frontend-angular",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
