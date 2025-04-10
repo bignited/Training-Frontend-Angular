@@ -16,7 +16,7 @@ phases:
   build:
     commands:
       - echo building...
-      - ng build --configuration=production
+      - ng build --configuration=production 
 artifacts:
   files:
   - '**/*'

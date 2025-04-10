@@ -1,4 +1,4 @@
-import { Component, EventEmitter, inject, input, Input, OnInit, output, Output } from '@angular/core';
+import { Component, inject, input, Input, OnInit, output, Output } from '@angular/core';
 import { Course } from '../../models/course.model';
 import { CommonModule } from '@angular/common';
 import { ConflictCheckService } from '../../services/conflict-check.service';
@@ -14,12 +14,13 @@ export class CourseListComponent implements OnInit {
 
   @Input() course!: Course;
   isEnrolledView = input<boolean>(false);
+  buttonId: string | undefined;
 
   courseUnenrolled = output<void>();
   enrollmentError = output<string>();
   enrollmentSuccess = output<string>();
 
-  enrolledCourses: any;
+  enrolledCourses: any[];
   isEnrolled: boolean = false;
 
   conflictCheck = inject(ConflictCheckService);
@@ -32,6 +33,10 @@ export class CourseListComponent implements OnInit {
   ngOnInit() {
     if (this.enrolledCourses.includes(this.course.id)) {
       this.isEnrolled = true;
+    }
+
+    if(!this.buttonId){
+      this.buttonId = this.course.name.toLowerCase() + '-course-button';
     }
   }
 

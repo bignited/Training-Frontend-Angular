@@ -27,11 +27,11 @@ export class OverviewComponent implements OnInit {
   
   fetchCourses(){
     this.courseService.getAllCourses().subscribe({
-      next: (courses) => {
-        this.courseList = courses;
-      },
-      error: (err) => console.error('Error fetching courses:', err)
-    }); 
+      next: (courses:Course[]) => {
+        this.courseList = courses; 
+      }
+    });
+    this.courseList = JSON.parse(sessionStorage.getItem("courseArray") || '[]'); 
   }
 
   handleError(error:string){

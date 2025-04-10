@@ -1,6 +1,7 @@
 <label [for]="labelName()">{{ displayName() }}</label><br>
 <textarea 
   [name]="labelName()"
+  [id]="inputId()"
   [value]="value" 
   (input)="onInputChange($event)"
   [attr.maxlength]="maxlength()">

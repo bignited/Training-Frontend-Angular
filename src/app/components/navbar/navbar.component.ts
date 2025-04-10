@@ -6,9 +6,9 @@ import { RouterLink } from '@angular/router';
   imports: [RouterLink],
   template: `
     <nav id="navBar">
-        <button class="button-primary" [routerLink]="'/overview'">Enroll</button>
-        <button class="button-primary" [routerLink]="'/enrolled'">Enrolled</button>
-        <button class="button-primary" id="createCourseButton" [routerLink]="'/create-course'">Create</button>
+        <button class="button-primary" id="enroll-button" [routerLink]="'/overview'">Enroll</button>
+        <button class="button-primary" id="erolled-button" [routerLink]="'/enrolled'">Enrolled</button>
+        <button class="button-primary" id="create-course-button" [routerLink]="'/create-course'">Create</button>
     </nav>
   `,
   styles: `
