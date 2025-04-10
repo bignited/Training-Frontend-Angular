@@ -2,6 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { CourseService } from './course.service';
 import { firstValueFrom, lastValueFrom } from 'rxjs';
 import { ErrorMessages } from '../errors/errormessages';
+import { Course } from '../models/course.model';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +10,17 @@ import { ErrorMessages } from '../errors/errormessages';
 export class ConflictCheckService {
 
   courseService = inject(CourseService);
+  newCourse: Course = {
+    id: 1,
+    name: 'error',
+    description: 'error',
+    location: 'error',
+    teacher: 'error',
+    imageUrl: 'error',
+    date: new Date('01-01-2026'),
+    timeStart: "09:00",
+    timeEnd: "10:00"
+  }
 
   parseTime(time: string){
     const [hours, minutes] = time.split(":").map(Number);
@@ -22,11 +34,12 @@ export class ConflictCheckService {
     const enrolledCourses = storedCourses ? JSON.parse(storedCourses) : [];
 
     try {
-      const newCourse = await firstValueFrom(this.courseService.getCourseById(newCourseId));
-      const startTimeNewCourse = newCourse.timeStart;
-      const endTimeNewCourse = newCourse.timeEnd
-      const locationNewCourse = newCourse.location;
-      const dateNewCourse = newCourse.date;
+      this.newCourse = await firstValueFrom(this.courseService.getCourseById(newCourseId)) || this.newCourse;
+      
+      const startTimeNewCourse = this.newCourse.timeStart;
+      const endTimeNewCourse = this.newCourse.timeEnd
+      const locationNewCourse = this.newCourse.location;
+      const dateNewCourse = this.newCourse.date;
 
       const enrolledCourseData = await Promise.all(
         enrolledCourses.map((id: number) => lastValueFrom(this.courseService.getCourseById(id)))

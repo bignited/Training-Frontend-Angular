@@ -18,6 +18,7 @@ phases:
       - echo building...
       - ng build --configuration=production
       - aws s3 sync ./dist/training-frontend-angular/ s3://training-frontend-angular/ --delete
+
 artifacts:
   files:
   - '**/*'

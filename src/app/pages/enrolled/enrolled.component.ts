@@ -26,19 +26,21 @@ export class EnrolledComponent {
   fetchCourses() {
     this.fetchedCourses = [];
     this.enrolledCoursesIds = JSON.parse(sessionStorage.getItem("enrolledCourses") || "[]");
-
+  
     if (this.enrolledCoursesIds.length < 1) {
       this.noCourses = true;
     }
-
+  
     this.enrolledCoursesIds.forEach((id: number) => {
       this.courseService.getCourseById(id).subscribe({
         next: (data) => {
-          this.fetchedCourses.push(data);
+          if (data) {
+            this.fetchedCourses.push(data);
+          }
         },
-        error: (err) => console.error('Error fetching enrolled courses:', err)
+        error: (err) => console.error('Error fetching enrolled course:', err)
       });
-    })
+    });
   }
 
   onCourseUnenrolled() {
