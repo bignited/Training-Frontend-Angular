@@ -20,18 +20,18 @@ export class CourseListComponent implements OnInit {
   enrollmentError = output<string>();
   enrollmentSuccess = output<string>();
 
-  enrolledCourses: any[];
+  enrolledCoursesIds: number[];
   isEnrolled: boolean = false;
 
   conflictCheck = inject(ConflictCheckService);
 
   constructor() {
     const storedCourses = sessionStorage.getItem('enrolledCourses');
-    this.enrolledCourses = storedCourses ? JSON.parse(storedCourses) : [];
+    this.enrolledCoursesIds = storedCourses ? JSON.parse(storedCourses) : [];
   }
 
   ngOnInit() {
-    if (this.enrolledCourses.includes(this.course.id)) {
+    if (this.enrolledCoursesIds.includes(this.course.id)) {
       this.isEnrolled = true;
     }
 
@@ -50,11 +50,11 @@ export class CourseListComponent implements OnInit {
 
   async enroll(courseId: number) {
 
-    const alreadyEnrolled = this.enrolledCourses.includes(this.course.id);
+    const alreadyEnrolled = this.enrolledCoursesIds.includes(this.course.id);
     if (!alreadyEnrolled) {
 
       const storedCourses = sessionStorage.getItem('enrolledCourses');
-      this.enrolledCourses = storedCourses ? JSON.parse(storedCourses) : [];
+      this.enrolledCoursesIds = storedCourses ? JSON.parse(storedCourses) : [];
 
       const errorMessage = await this.conflictCheck.checkForDateConflict(this.course.id);
       if (errorMessage) {
@@ -65,9 +65,9 @@ export class CourseListComponent implements OnInit {
         this.enrollmentSuccess.emit(successMessage);
       }
 
-      this.enrolledCourses.push(courseId);
+      this.enrolledCoursesIds.push(courseId);
       this.isEnrolled = true;
-      sessionStorage.setItem('enrolledCourses', JSON.stringify(this.enrolledCourses));
+      sessionStorage.setItem('enrolledCourses', JSON.stringify(this.enrolledCoursesIds));
 
     } else {
       return;
@@ -76,9 +76,9 @@ export class CourseListComponent implements OnInit {
 
   unenroll(courseId: number) {
 
-    const index = this.enrolledCourses.indexOf(courseId);
-    this.enrolledCourses.splice(index, 1);
-    sessionStorage.setItem('enrolledCourses', JSON.stringify(this.enrolledCourses));
+    const index = this.enrolledCoursesIds.indexOf(courseId);
+    this.enrolledCoursesIds.splice(index, 1);
+    sessionStorage.setItem('enrolledCourses', JSON.stringify(this.enrolledCoursesIds));
     this.courseUnenrolled.emit();
   }
 }
