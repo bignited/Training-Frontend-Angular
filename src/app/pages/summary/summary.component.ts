@@ -27,12 +27,12 @@ export class SummaryComponent implements OnInit {
 
   onApprove() {
     if (this.course) {
-      this.courseService.create(this.course).subscribe(() => {
-        this.draftService.clearDraft();
-        this.router.navigate(['/overview']);
-      });
+      this.courseService.create(this.course);
+      this.draftService.clearDraft();
+      this.router.navigate(['/overview']);
+      };
     }
-  }
+  
 
   onEdit() {
     this.router.navigate(['/create-course']);
@@ -43,3 +43,4 @@ export class SummaryComponent implements OnInit {
     this.router.navigate(['/create-course']);
   }
 }
+

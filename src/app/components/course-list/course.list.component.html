@@ -11,7 +11,7 @@
       <app-course-detail [iconClass]="'material-symbols-outlined'" [iconName]="'calendar_month'" [detail]="course.date" />
       <app-course-detail [iconClass]="'material-symbols-outlined'" [iconName]="'schedule'" [detail]="course.timeStart + ' - ' + course.timeEnd" />
     </div>
-    <button (click)="toggleEnrollment()" [ngClass]="isEnrolledView() ? 'button-danger': 'button-primary'">
+    <button (click)="toggleEnrollment()" [ngClass]="isEnrolledView() ? 'button-danger': 'button-primary'" [id]="buttonId">
       {{ isEnrolledView() ? 'Unenroll' : 'Enroll' }}</button>
   </div>
 </section>

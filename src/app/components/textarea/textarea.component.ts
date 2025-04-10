@@ -18,6 +18,7 @@ import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/f
 export class TextareaComponent implements ControlValueAccessor {
 
   labelName = input<string>();
+  inputId = input<string>()
   displayName = input<string>();
   maxlength = input<number>();
   value: string = '';
