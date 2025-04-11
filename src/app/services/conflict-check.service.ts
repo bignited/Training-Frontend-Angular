@@ -16,7 +16,7 @@ export class ConflictCheckService {
     description: 'error',
     location: 'error',
     teacher: 'error',
-    imageUrl: 'error',
+    image: 'error',
     date: new Date('01-01-2026'),
     timeStart: "09:00",
     timeEnd: "10:00"

@@ -1,0 +1,9 @@
+<label [for]="labelName()">{{ displayName() }}</label><br>
+<input 
+type="file" 
+accept=".jpg, .png"
+[name]="labelName()" 
+(change)="onFileSelected($event)"  
+[id]="inputId()" 
+><br>
+<img *ngIf="value" [src]="value" alt="Preview" style="max-width: 100px; margin-top: 10px;" /><br>
