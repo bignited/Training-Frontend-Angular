@@ -1,6 +1,6 @@
 <section class="list-item">
   <div class="course-image">
-    <figure><img [src]="course.image ?? 'https://placehold.co/300x200'" alt="placeholder image"></figure>
+    <figure><img [src]="course.image || 'https://placehold.co/300x200'" alt="placeholder image"></figure>
   </div>
   <div class="course-data">
     <h2>{{ course.name }}</h2>

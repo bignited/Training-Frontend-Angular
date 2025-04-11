@@ -5,7 +5,7 @@ import { Course } from '../../models/course.model';
 import { CourseService } from '../../services/course.service';
 import { NavbarComponent } from '../../components/navbar/navbar.component';
 import { AlertBoxComponent } from '../../components/alert-box/alert-box.component';
- 
+
 @Component({
   selector: 'app-overview',
   imports: [CommonModule, CourseListComponent, NavbarComponent, AlertBoxComponent],
@@ -14,34 +14,36 @@ import { AlertBoxComponent } from '../../components/alert-box/alert-box.componen
 })
 export class OverviewComponent implements OnInit {
 
-  courseList:any = [];
+  courseList: any = [];
   enrolledCourses: any = [];
   errorMessage: string | null = null;
   successMessage: string | null = null;
 
   courseService = inject(CourseService);
 
-  ngOnInit(){
+  ngOnInit() {
     this.fetchCourses();
   }
-  
-  fetchCourses(){
+
+  fetchCourses() {
     this.courseService.getAllCourses().subscribe({
-      next: (courses:Course[]) => {
-        this.courseList = courses; 
+      next: (courses: Course[]) => {
+        this.courseList = courses;
+        if (courses && courses.length > 0) {
+          sessionStorage.setItem('courseArray', JSON.stringify(courses));
+        }
       }
     });
-    this.courseList = JSON.parse(sessionStorage.getItem("courseArray") || '[]'); 
   }
 
-  handleError(error:string){
+  handleError(error: string) {
     this.errorMessage = error;
   }
 
-  handleSuccess(successMessage:string){
-    this.successMessage = successMessage; 
+  handleSuccess(successMessage: string) {
+    this.successMessage = successMessage;
   }
-  
+
   clearMessage() {
     this.errorMessage = null;
     this.successMessage = null;

@@ -19,6 +19,7 @@
     "@angular/platform-browser-dynamic": "^19.0.0",
     "@angular/router": "^19.0.0",
     "@types/node": "^22.13.15",
+    "cypress": "^14.3.0",
     "magic-regexp": "^0.8.0",
     "rxjs": "~7.8.0",
     "sass": "^1.86.0",
