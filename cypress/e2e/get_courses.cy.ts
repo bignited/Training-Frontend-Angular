@@ -19,7 +19,7 @@ describe('Change GET Courses', () => {
             cy.intercept('GET', '/courses', (req) => {
                 req.reply({
                     statusCode: 200,
-                    body: testCourse
+                    body: [testCourse]
                 })
             }).as("intercept")
 
