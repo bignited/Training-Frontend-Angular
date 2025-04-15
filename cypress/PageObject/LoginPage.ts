@@ -1,9 +1,9 @@
 export const loginPage = {
     input: {
-        usernameInput: '#input-username',
-        passwordInput: '#input-password'  
+        username: '#input-username',
+        password: '#input-password'  
     },
     button: {
-        loginBtn: '#button-login'
+        login: '#button-login'
     }
 }  

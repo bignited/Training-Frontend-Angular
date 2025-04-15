@@ -1,7 +1,7 @@
 export const overviewPage = {
     button: {
-        enrollButton: '#enroll-button',
-        enrolledButton: '#enrolled-button',
-        createCourseButton: '#create-course-button'
+        enroll: '#enroll-button',
+        enrolled: '#enrolled-button',
+        createCourse: '#create-course-button'
     }
 }
