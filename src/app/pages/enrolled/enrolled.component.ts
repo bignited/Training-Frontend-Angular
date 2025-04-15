@@ -52,7 +52,7 @@ export class EnrolledComponent {
     const error = await this.conflictCheckService.unenrollCheck(courseId);
   if (error) {
     this.errorMessage = error;
-    return; // don't proceed with unenrolling or fetching courses
+    return;
   }
     this.fetchCourses();
   }

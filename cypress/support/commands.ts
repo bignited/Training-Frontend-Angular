@@ -1,11 +1,9 @@
-Cypress.Commands.add("login", ({username, password}) => { 
-    cy.visit('http://localhost:4200')
+import {loginPage} from "../PageObject/LoginPage"; 
+ 
+Cypress.Commands.add("login", (username, password) => { 
+    cy.visit('/');
 
-    cy.get('#input-username')
-      .type(username)
-
-    cy.get('#input-password')
-      .type(password)
-
-    cy.get('#button-login').click()
+    cy.get(loginPage.usernameInput).type(username)
+    cy.get(loginPage.passwordInput).type(password);
+    cy.get(loginPage.loginBtn).click();
 })

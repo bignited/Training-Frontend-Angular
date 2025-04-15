@@ -1,7 +1,3 @@
-class SummaryPage{
- 
-    elements = {
-        approveButton : () => cy.get('#button-approve')
-    }
-  }
-  export default SummaryPage;
+export const summaryPage = {
+    approveBtn: '#button-approve'
+}

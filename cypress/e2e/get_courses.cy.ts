@@ -1,5 +1,5 @@
 describe('Change GET Courses', () => {
- 
+
     const testCourse = {
         name: 'Playwright',
         description: 'Learn playwright',
@@ -12,21 +12,21 @@ describe('Change GET Courses', () => {
     }
 
     it('should intercept and change GET data', () => {
+        cy.fixture("users.json").then((users) => {
+            const user1 = users.user1;
+            cy.login(user1.username, user1.password);
 
-        cy.fixture('users').then((users) => {
-        cy.login(users.ara)
-        })
+            cy.intercept('GET', '/courses', (req) => {
+                req.reply({
+                    statusCode: 200,
+                    body: testCourse
+                })
+            }).as("intercept")
 
-        cy.intercept('GET', '/courses', (req) => {
-            req.reply({
-                statusCode: 200,
-                body: testCourse
-            })
-        }).as("intercept")
+            cy.visit('/' + '/overview')
 
-        cy.visit(Cypress.env('SITE_URL' + '/overview'));
+            cy.wait('@intercept')
 
-        cy.wait('@intercept')
-    })
-
+        });
+    });
 })
