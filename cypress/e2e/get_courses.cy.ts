@@ -1,7 +1,7 @@
 describe('Change GET Courses', () => {
 
     const testCourse = {
-        name: 'Playwright',
+        name: 'Airbending',
         description: 'Learn playwright',
         location: 'Brugge',
         teacher: 'Mr B',
