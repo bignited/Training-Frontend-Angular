@@ -23,8 +23,6 @@ describe('Change GET Courses', () => {
                 })
             }).as("intercept")
 
-            cy.visit('/' + '/overview')
-
             cy.wait('@intercept')
 
         });

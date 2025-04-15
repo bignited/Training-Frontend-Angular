@@ -1,5 +1,6 @@
 import { formPage } from "../PageObject/FormPage";
 import { summaryPage } from "../PageObject/SummaryPage";
+import { overviewPage } from "../PageObject/OverviewPage";
 
 describe('Post Courses', () => {
 
@@ -19,7 +20,7 @@ describe('Post Courses', () => {
             const user1 = users.user1;
             cy.login(user1.username, user1.password);
 
-            cy.visit('/' + '/create-course');
+            cy.get(overviewPage.button.createCourseButton).click();
 
             cy.intercept('POST', '/courses', (req) => {
                 req.reply({
@@ -28,16 +29,16 @@ describe('Post Courses', () => {
                 })
             }).as("intercept")
 
-            cy.get(formPage.courseName).type('Python');
-            cy.get(formPage.description).type('Learn Python');
-            cy.get(formPage.location).select('Antwerpen');
-            cy.get(formPage.teacher).type('Learn Python');
-            cy.get(formPage.date).type('2026-01-01');
-            cy.get(formPage.startTime).type('13:00');
-            cy.get(formPage.endTime).type('15:00');
-            cy.get(formPage.submit).click();
+            cy.get(formPage.input.courseName).type('Python');
+            cy.get(formPage.input.description).type('Learn Python');
+            cy.get(formPage.input.location).select('Antwerpen');
+            cy.get(formPage.input.teacher).type('Learn Python');
+            cy.get(formPage.input.date).type('2026-01-01');
+            cy.get(formPage.input.startTime).type('13:00');
+            cy.get(formPage.input.endTime).type('15:00');
+            cy.get(formPage.button.submit).click();
 
-            cy.get(summaryPage.approveBtn).click()
+            cy.get(summaryPage.button.approveBtn).click()
 
             cy.wait('@intercept')
         })

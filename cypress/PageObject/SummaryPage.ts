@@ -1,3 +1,5 @@
 export const summaryPage = {
-    approveBtn: '#button-approve'
+    button: {
+        approveBtn: '#button-approve'
+    }
 }
