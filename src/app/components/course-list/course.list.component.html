@@ -1,6 +1,6 @@
 <section class="list-item">
   <div class="course-image">
-    <figure><img [src]="course.imageUrl ?? 'https://placehold.co/300x200'" alt="placeholder image"></figure>
+    <figure><img [src]="course.image || placeholderImageURL" alt="placeholder image"></figure>
   </div>
   <div class="course-data">
     <h2>{{ course.name }}</h2>
@@ -11,7 +11,12 @@
       <app-course-detail [iconClass]="'material-symbols-outlined'" [iconName]="'calendar_month'" [detail]="course.date" />
       <app-course-detail [iconClass]="'material-symbols-outlined'" [iconName]="'schedule'" [detail]="course.timeStart + ' - ' + course.timeEnd" />
     </div>
-    <button (click)="toggleEnrollment()" [ngClass]="isEnrolledView() ? 'button-danger': 'button-primary'" [id]="buttonId">
-      {{ isEnrolledView() ? 'Unenroll' : 'Enroll' }}</button>
+    <button 
+    [disabled]="!isEnrolledView() && isUserEnrolled"
+    (click)="toggleEnrollment()" 
+    [ngClass]="isEnrolledView() ? 'button-danger': 'button-primary'" 
+    [id]="buttonId">
+    {{ isEnrolledView() ? 'Unenroll' : isUserEnrolled ? 'Already Enrolled' : 'Enroll' }}
+    </button>
   </div>
 </section>

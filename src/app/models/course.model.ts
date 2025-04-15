@@ -4,7 +4,7 @@ export interface Course{
     description: string;
     location: string;
     teacher: string;
-    imageUrl: string | null;  
+    image: string | null;  
     date: Date;
     timeStart: string; 
     timeEnd: string;

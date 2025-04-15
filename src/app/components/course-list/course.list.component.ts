@@ -3,6 +3,7 @@ import { Course } from '../../models/course.model';
 import { CommonModule } from '@angular/common';
 import { ConflictCheckService } from '../../services/conflict-check.service';
 import { CourseDetailComponent } from '../course-detail/course-detail.component';
+import { SessionstorageService } from '../../services/sessionstorage.service';
 
 @Component({
   selector: 'app-course-list',
@@ -16,14 +17,16 @@ export class CourseListComponent implements OnInit {
   isEnrolledView = input<boolean>(false);
   buttonId: string | undefined;
 
-  courseUnenrolled = output<void>();
+  courseUnenrolled = output<number>();
   enrollmentError = output<string>();
   enrollmentSuccess = output<string>();
 
   enrolledCourseIds: number[];
   isEnrolled: boolean = false;
+  placeholderImageURL: string = 'https://placehold.co/300x200';
 
   conflictCheck = inject(ConflictCheckService);
+  sessionStorageService = inject(SessionstorageService);
 
   constructor() {
     const storedCourses = sessionStorage.getItem('enrolledCourses');
@@ -35,7 +38,7 @@ export class CourseListComponent implements OnInit {
       this.isEnrolled = true;
     }
 
-    if(!this.buttonId){
+    if (!this.buttonId) {
       this.buttonId = this.course.name.toLowerCase() + '-course-button';
     }
   }
@@ -74,11 +77,25 @@ export class CourseListComponent implements OnInit {
     }
   }
 
-  unenroll(courseId: number) {
+  async unenroll(courseId: number) {
 
-    const index = this.enrolledCourseIds.indexOf(courseId);
-    this.enrolledCourseIds.splice(index, 1);
-    sessionStorage.setItem('enrolledCourses', JSON.stringify(this.enrolledCourseIds));
-    this.courseUnenrolled.emit();
+    const errorMessage = await this.conflictCheck.unenrollCheck(this.course.id);
+    if (errorMessage) {
+      this.enrollmentError.emit(errorMessage);
+      return;
+    } else {
+      const index = this.enrolledCourseIds.indexOf(courseId);
+      this.enrolledCourseIds.splice(index, 1);
+      sessionStorage.setItem('enrolledCourses', JSON.stringify(this.enrolledCourseIds));
+      this.courseUnenrolled.emit(this.course.id);
+
+      const successMessage = "Unenrolled successfully";
+      this.enrollmentSuccess.emit(successMessage);
+    }
+  }
+
+  get isUserEnrolled(): boolean {
+    const enrolledIds = JSON.parse(sessionStorage.getItem('enrolledCourses') || '[]');
+    return enrolledIds.includes(this.course.id);
   }
 }

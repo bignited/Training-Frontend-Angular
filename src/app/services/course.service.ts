@@ -1,51 +1,80 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Course } from '../models/course.model';
-import { Observable, of } from 'rxjs';
+import { catchError, map, Observable, of } from 'rxjs';
 import { environment } from '../../environments/environment';
+import { SessionstorageService } from './sessionstorage.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CourseService {
- 
+
   http = inject(HttpClient);
-  baseUrl = environment.apiUrl + '/courses'; 
+  baseUrl = environment.apiUrl + '/courses';
 
-  storageKey = "courseArray"; 
-  courses: Course[] = []; 
+  storageKey = "courseArray";
+  courses: Course[] = [];
+
+  sessionStorageService = inject(SessionstorageService);
   
-  create(course:Course): void{
-   
+  create(course: Course): void {
+
     this.http.post(`${this.baseUrl}`, course).subscribe({});
-  
-    this.courses = JSON.parse(sessionStorage.getItem(this.storageKey) || '[]' );
-    course.id = Math.floor(Math.random() * 100); 
+
+    this.courses = JSON.parse(sessionStorage.getItem(this.storageKey) || '[]');
+    let courseIdCounter = parseInt(sessionStorage.getItem('courseIdCounter') || '1');
+    course.id = courseIdCounter++;
+    sessionStorage.setItem('courseIdCounter', courseIdCounter.toString());
+
     this.courses.push(course);
-    return sessionStorage.setItem(this.storageKey, JSON.stringify(this.courses));
-    }
-  
+    sessionStorage.setItem(this.storageKey, JSON.stringify(this.courses));
+    return
+  }
+
   getAllCourses(): Observable<Course[]> {
-    JSON.parse(sessionStorage.getItem(this.storageKey) || '[]' );
-    return this.http.get<Course[]>(`${this.baseUrl}`);
-  }
-  
-  getCourseById(id:number): Observable<Course>{
-     this.getFromStorageCourseById(id);
-     return this.http.get<Course>(`${this.baseUrl}/` + id );
-  }
-
-  getFromStorageCourseById(id: number){
-    const courses:Course[] = JSON.parse(sessionStorage.getItem(this.storageKey) || '[]');
-    const course = courses.find(course => course.id === id);
-    return of(course);
-  }
-
-  deleteCourseById(id:string){
-    return this.http.delete(`${this.baseUrl}/` + id); 
+    return this.http.get<Course[]>(`${this.baseUrl}`).pipe(
+      map(courses => {
+        if (courses && courses.length > 0) {
+          return courses;
+        } else {
+          const cached = JSON.parse(sessionStorage.getItem(this.storageKey) || '[]');
+          return cached;
+        }
+      }),
+      catchError(() => {
+        const cached = JSON.parse(sessionStorage.getItem(this.storageKey) || '[]');
+        return of(cached);
+      })
+    );
   }
 
-  editCourseById(id:string, course:Course){
-    return this.http.put(`${this.baseUrl}/` + id, course)
+  getCourseById(id: number): Observable<Course | undefined> {
+    return this.http.get<Course>(`${this.baseUrl}/` + id).pipe(
+      map(course => {
+        if (course) {
+          return course;
+        } else {
+          const courses: Course[] = JSON.parse(sessionStorage.getItem('courseArray') || '[]');
+          const course = courses.find(course => course.id === id);
+          return course;
+        }
+      }),
+      catchError(() => {
+        const courses: Course[] = JSON.parse(sessionStorage.getItem('courseArray') || '[]');
+        const course = courses.find(course => course.id === id);
+        return of(course);
+      })
+    );
+  }
+
+  deleteCourseById(id: number) {
+    this.http.delete(`${this.baseUrl}/` + id).subscribe({});
+
+    const courses: Course[] = JSON.parse(sessionStorage.getItem('courseArray') || '[]');
+    const index = courses.findIndex(course => course.id === id);
+    courses.splice(index, 1);
+    sessionStorage.setItem('courseArray', JSON.stringify(courses));
+    return 'Course deleted succesfully'
   }
 }

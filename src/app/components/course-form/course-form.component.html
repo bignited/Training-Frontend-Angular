@@ -12,7 +12,9 @@
                    <app-select [name]="'location'" [items]="locationArray" [inputId]="'select-location'" [displayName]="'Location'" formControlName="location" />
                    <p class="error-text" *ngIf="createCourseForm.get('location')?.invalid && createCourseForm.get('location')?.touched">Please select a location</p>
                    
-                   <input type="submit" value="Add Course" class="button-primary">
+                   <app-image-input [displayName]="'Upload an image'" formControlName="image"></app-image-input>
+                   
+                   <input type="submit" id="submit-form" value="Add Course" class="button-primary">
                </div>
                <div class="right-column">
                    <app-input [inputType]="'text'" [labelName]="'teacher'" [inputId]="'input-teacher'" [displayName]="'Course given by'" formControlName="teacher"/>
