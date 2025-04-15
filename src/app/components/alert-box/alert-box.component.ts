@@ -9,7 +9,7 @@ import { Course } from '../../models/course.model';
     <div *ngIf="errorMessage() || successMessage()" [ngClass]="{'alert-box': errorMessage(), 'success-box': successMessage()}">
       <div *ngIf="errorMessage()">
         <span class="closebtn" (click)="close()">&times;</span>
-        <p>Could not enroll: {{errorMessage()}}</p>
+        <p>{{messageStart()}}: {{errorMessage()}}</p>
       </div>
       <div *ngIf="successMessage()">
       <span class="closebtn" (click)="close()">&times;</span>
@@ -22,10 +22,12 @@ import { Course } from '../../models/course.model';
 export class AlertBoxComponent {
   errorMessage = input<string | null>();
   successMessage = input<string | null>();
+  messageStart = input<string>(); 
 
   closeEvent = output<void>();
 
   close() {
     this.closeEvent.emit();
   }
+  
 }

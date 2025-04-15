@@ -1,7 +1,9 @@
 <main>
     <app-navbar></app-navbar>
+    <app-alert-box *ngIf="errorMessage" [errorMessage]="errorMessage" [messageStart]="'Could not unenroll'" (closeEvent)="clearMessage()"></app-alert-box>
+    <app-alert-box *ngIf="successMessage" [successMessage]="successMessage" (closeEvent)="clearMessage()"></app-alert-box>
     <div class="list-items">
-        <app-course-list *ngFor="let Course of fetchedCourses" [course]="Course" [isEnrolledView]="true" (courseUnenrolled)="onCourseUnenrolled()"></app-course-list>
+        <app-course-list *ngFor="let Course of fetchedCourses" [course]="Course" [isEnrolledView]="true" (enrollmentError)="handleError($event)" (enrollmentSuccess)="handleSuccess($event)" (courseUnenrolled)="onCourseUnenrolled($event)"></app-course-list>
     </div>
     <div *ngIf="noCourses" class="no-courses-message">
         <h3>Not enrolled in any courses yet</h3>

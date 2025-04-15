@@ -1,6 +1,6 @@
 <main>
     <app-navbar />
-    <app-alert-box *ngIf="errorMessage" [errorMessage]="errorMessage" (closeEvent)="clearMessage()"></app-alert-box>
+    <app-alert-box *ngIf="errorMessage" [errorMessage]="errorMessage" [messageStart]="'Could not enroll'" (closeEvent)="clearMessage()"></app-alert-box>
     <app-alert-box *ngIf="successMessage" [successMessage]="successMessage" (closeEvent)="clearMessage()"></app-alert-box>
     <div class="list-items">
         <app-course-list *ngFor="let Course of courseList" [course]="Course"

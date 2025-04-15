@@ -5,5 +5,5 @@
       "sourceMap": true,
       "types": ["cypress", "node"]
     },
-    "include": ["**/*.ts"]
+    "include": ["**/*.ts", "PageObject/LoginPage.ts", "../cypress.config.ts"]
   }

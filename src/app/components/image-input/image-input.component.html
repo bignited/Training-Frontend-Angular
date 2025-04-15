@@ -1,9 +1,11 @@
-<label [for]="labelName()">{{ displayName() }}</label><br>
+<label [for]="inputId()" class="button-primary file-label">{{ displayName() }}</label><br>
 <input 
-type="file" 
-accept=".jpg, .png"
-[name]="labelName()" 
-(change)="onFileSelected($event)"  
-[id]="inputId()" 
-><br>
+  type="file" 
+  accept=".jpg, .png"
+  [name]="labelName()" 
+  (change)="onFileSelected($event)"  
+  [id]="inputId()" 
+  class="hidden-input"
+/>
+<p>Images can be max. 5MB</p>
 <img *ngIf="value" [src]="value" alt="Preview" style="max-width: 100px; margin-top: 10px;" /><br>

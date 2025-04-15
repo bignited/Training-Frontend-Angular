@@ -5,6 +5,7 @@ import { Course } from '../../models/course.model';
 import { CourseService } from '../../services/course.service';
 import { NavbarComponent } from '../../components/navbar/navbar.component';
 import { AlertBoxComponent } from '../../components/alert-box/alert-box.component';
+import { SessionstorageService } from '../../services/sessionstorage.service';
 
 @Component({
   selector: 'app-overview',
@@ -20,6 +21,7 @@ export class OverviewComponent implements OnInit {
   successMessage: string | null = null;
 
   courseService = inject(CourseService);
+  sessionStorageService = inject(SessionstorageService);
 
   ngOnInit() {
     this.fetchCourses();

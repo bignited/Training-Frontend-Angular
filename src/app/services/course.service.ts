@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Course } from '../models/course.model';
 import { catchError, map, Observable, of } from 'rxjs';
 import { environment } from '../../environments/environment';
+import { SessionstorageService } from './sessionstorage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,8 @@ export class CourseService {
 
   storageKey = "courseArray";
   courses: Course[] = [];
+
+  sessionStorageService = inject(SessionstorageService);
   
   create(course: Course): void {
 
