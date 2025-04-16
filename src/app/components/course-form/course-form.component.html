@@ -20,7 +20,7 @@
                    <app-input [inputType]="'text'" [labelName]="'teacher'" [inputId]="'input-teacher'" [displayName]="'Course given by'" formControlName="teacher"/>
                    <p class="error-text" *ngIf="createCourseForm.get('teacher')?.invalid && createCourseForm.get('teacher')?.touched">Please enter the teacher's name</p>
                    
-                   <app-input [inputType]="'date'" [labelName]="'date'" [inputId]="'input-date'" [displayName]="'Date'" formControlName="date" [minDate]="currentDateISO" />
+                   <app-input [inputType]="'date'" [labelName]="'date'" [inputId]="'input-date'" [displayName]="'Date'" formControlName="date" [minDate]="currentDateISO" [maxDate]="'9999-12-30'" />
                    <p class="error-text" *ngIf="createCourseForm.get('date')?.touched && createCourseForm.get('date')?.value < currentDateISO">Date can't be in the past</p>
                    
                    <app-input [inputType]="'time'" [labelName]="'timeStart'" [inputId]="'input-time-start'" [displayName]="'Time start'" formControlName="timeStart"/>

@@ -20,6 +20,7 @@ export class InputComponent implements ControlValueAccessor {
   displayName = input<string>();
   inputId = input<string>();
   minDate = input<string>();
+  maxDate = input<string>();
   maxLength = input<number>(30); 
   isLogin = input<boolean>(false);
 
