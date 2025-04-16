@@ -1,6 +1,6 @@
 describe('Change GET Courses', () => {
 
-    const testCourse = {
+    const testCourse = [{
         name: 'Playwright',
         description: 'Learn playwright',
         location: 'Brugge',
@@ -9,7 +9,17 @@ describe('Change GET Courses', () => {
         date: '01-01-2026',
         timeStart: '13:00',
         timeEnd: '15:00'
-    }
+    },
+    {
+        name: 'Selenium',
+        description: 'Learn testing with Selenium',
+        location: 'Lommel',
+        teacher: 'Mrs B',
+        image: null,
+        date: '01-01-2026',
+        timeStart: '13:00',
+        timeEnd: '15:00'  
+    }]
 
     it('should intercept and change GET data', () => {
         cy.fixture("users.json").then((users) => {

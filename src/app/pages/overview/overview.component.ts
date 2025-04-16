@@ -19,6 +19,7 @@ export class OverviewComponent implements OnInit {
   enrolledCourses: any = [];
   errorMessage: string | null = null;
   successMessage: string | null = null;
+  noCourses: boolean = false;
 
   courseService = inject(CourseService);
   sessionStorageService = inject(SessionstorageService);
@@ -31,6 +32,9 @@ export class OverviewComponent implements OnInit {
     this.courseService.getAllCourses().subscribe({
       next: (courses: Course[]) => {
         this.courseList = courses;
+        if (courses.length < 1) {
+          this.noCourses = true;
+        }
         if (courses && courses.length > 0) {
           sessionStorage.setItem('courseArray', JSON.stringify(courses));
         }

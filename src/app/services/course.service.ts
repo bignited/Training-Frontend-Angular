@@ -46,7 +46,7 @@ export class CourseService {
         const cached = JSON.parse(sessionStorage.getItem(this.storageKey) || '[]');
         return of(cached);
       })
-    );
+    )
   }
 
   getCourseById(id: number): Observable<Course | undefined> {

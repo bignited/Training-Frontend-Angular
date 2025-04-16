@@ -6,4 +6,8 @@
         <app-course-list *ngFor="let Course of courseList" [course]="Course"
             (enrollmentError)="handleError($event)" (enrollmentSuccess)="handleSuccess($event)"></app-course-list>
     </div>
+    <div *ngIf="noCourses" class="no-courses-message">
+        <h3>Currently no courses available</h3>
+        <p>New courses are added regularly — check back again soon!</p>
+    </div>
 </main>
