@@ -4,6 +4,12 @@
    padding: 50px;
  }
 
+ .left-column, .right-column {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+ }
+
  form {
   display: flex;
   gap: 50px;
@@ -12,4 +18,8 @@
  p {
   margin: 0;
   padding: 5px 0;
+ }
+
+ #submit-form {
+  width: 100%;
  }

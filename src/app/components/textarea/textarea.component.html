@@ -3,6 +3,7 @@
   [name]="labelName()"
   [id]="inputId()"
   [value]="value" 
+  (blur)="handleBlur()"
   (input)="onInputChange($event)"
   [attr.maxlength]="maxlength()">
 </textarea><br>

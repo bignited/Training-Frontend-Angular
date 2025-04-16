@@ -62,8 +62,13 @@ export class CourseFormComponent implements OnInit {
     const today = new Date();
     today.setHours(0, 0, 0, 0);
 
+    const inputYear = selectedDate.getFullYear();
+
+    if(inputYear > 2038){
+      return { tooFarInFuture: true}
+    }
     if (selectedDate <= today) {
-      return { 'dateInPast': true };
+      return { dateInPast: true };
     }
     return null;
   }
@@ -99,7 +104,6 @@ export class CourseFormComponent implements OnInit {
   checkForDraft() {
     const draft = this.draftService.getDraft();
     if (draft) {
-      console.log(draft);
       this.createCourseForm.setValue(draft);
     }
   }
