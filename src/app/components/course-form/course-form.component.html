@@ -3,7 +3,7 @@
         <h2>Create a new course</h2>
         <form (ngSubmit)="submitForm()" [formGroup]="createCourseForm">
                <div class="left-column">
-                   <app-input [inputType]="'text'" [labelName]="'course-name'" [inputId]="'input-course-name'" [displayName]="'Course Name'" formControlName="name" />
+                   <app-input [inputType]="'text'" [labelName]="'course-name'" [inputId]="'input-course-name'" [displayName]="'Course Name'" [maxLength]="25" formControlName="name" />
                    <p class="error-text" *ngIf="createCourseForm.get('name')?.invalid && createCourseForm.get('name')?.touched">Please enter a course name</p>
                    
                    <app-textarea [labelName]="'description'" [displayName]="'Description'" [inputId]="'textarea-description'" formControlName="description" [maxlength]="240" ></app-textarea>
