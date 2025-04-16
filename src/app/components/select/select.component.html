@@ -1,4 +1,4 @@
 <label [for]="name()">{{ displayName() }}</label><br>
-<select [id]="inputId()" [value]="selectedValue" (change)="onSelectChange($event)">
-    <option *ngFor="let item of items()" [value]="item">{{item}}</option>
+<select [id]="inputId()" (change)="onSelectChange($event)">
+    <option *ngFor="let item of items()" [value]="item" [selected]="item === selectedValue">{{item}} </option>
 </select><br>
