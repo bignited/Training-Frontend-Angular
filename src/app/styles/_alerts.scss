@@ -2,7 +2,6 @@
 
 .alert-box{
  position: fixed;
- left: 70%;
  top: 5%;
  right: 5%;
  background-color: $danger-color;
@@ -15,7 +14,7 @@
 
 .success-box{
  position: fixed;
- left: 70%;
+ right: 5%;
  top: 5%;
  background-color: $success-color;
  color: white;
