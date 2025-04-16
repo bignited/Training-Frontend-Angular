@@ -6,6 +6,7 @@
 (input)="updateValue($event)" 
 [value]="value" 
 [id]="inputId()" 
+(blur)="handleBlur()"
 [ngClass]="{'blue-background': isLogin()}" 
 [max]="maxDate()"
 [min]="minDate()"><br>

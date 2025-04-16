@@ -45,4 +45,8 @@ export class TextareaComponent implements ControlValueAccessor {
     this.value = newValue;
     this.onChange(newValue);
   }
+
+  handleBlur(): void {
+    this.onTouched();  
+  }
 }
