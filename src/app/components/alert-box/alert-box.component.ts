@@ -1,23 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, input, output } from '@angular/core';
-import { Course } from '../../models/course.model';
 
 @Component({
   selector: 'app-alert-box',
   imports: [CommonModule],
-  template: `
-    <div *ngIf="errorMessage() || successMessage()" [ngClass]="{'alert-box': errorMessage(), 'success-box': successMessage()}">
-      <div *ngIf="errorMessage()">
-        <span class="closebtn" (click)="close()">&times;</span>
-        <p>{{messageStart()}}: {{errorMessage()}}</p>
-      </div>
-      <div *ngIf="successMessage()">
-      <span class="closebtn" (click)="close()">&times;</span>
-      <p>{{successMessage()}}</p>
-    </div>
-    </div>
-  `,
-  styles: ""
+  templateUrl: 'alert-box.component.html',
+  styleUrl: 'alert-box.component.scss'
 })
 export class AlertBoxComponent {
   errorMessage = input<string | null>();
@@ -26,6 +14,14 @@ export class AlertBoxComponent {
 
   closeEvent = output<void>();
 
+  ngOnInit() {
+    if (this.errorMessage() || this.successMessage()) {
+      setTimeout(() => {
+        this.close();
+      }, 3000);  
+    }
+  }
+  
   close() {
     this.closeEvent.emit();
   }

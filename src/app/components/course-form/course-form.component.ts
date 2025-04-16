@@ -104,7 +104,6 @@ export class CourseFormComponent implements OnInit {
   checkForDraft() {
     const draft = this.draftService.getDraft();
     if (draft) {
-      console.log(draft);
       this.createCourseForm.setValue(draft);
     }
   }
