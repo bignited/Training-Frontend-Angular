@@ -51,8 +51,8 @@ export class ConflictCheckService {
         const dateEnrolledCourse = course.date;
 
         if (dateNewCourse === dateEnrolledCourse &&
-          this.parseTime(startTimeNewCourse) < this.parseTime(endTimeEnrolledCourse) &&
-          this.parseTime(startTimeEnrolledCourse) < this.parseTime(endTimeNewCourse)) {
+          this.parseTime(startTimeNewCourse) <= this.parseTime(endTimeEnrolledCourse) &&
+          this.parseTime(startTimeEnrolledCourse) <= this.parseTime(endTimeNewCourse)) {
           return ErrorMessages.timeConflict;
         }
 
