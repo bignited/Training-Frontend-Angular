@@ -8,7 +8,7 @@
     <div>
       <app-course-detail [iconClass]="'material-icons md-24'" [iconName]="'location_on'" [detail]="course.location" />
       <app-course-detail [iconClass]="'material-symbols-outlined'" [iconName]="'school'" [detail]="course.teacher" />
-      <app-course-detail [iconClass]="'material-symbols-outlined'" [iconName]="'calendar_month'" [detail]="course.date" />
+      <app-course-detail [iconClass]="'material-symbols-outlined'" [iconName]="'calendar_month'" [detail]="course.date | date:'dd-MM-YYYY'" />
       <app-course-detail [iconClass]="'material-symbols-outlined'" [iconName]="'schedule'" [detail]="course.timeStart + ' - ' + course.timeEnd" />
     </div>
     <button 
