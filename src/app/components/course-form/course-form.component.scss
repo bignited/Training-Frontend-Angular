@@ -4,6 +4,12 @@
    padding: 50px;
  }
 
+ .left-column, .right-column {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+ }
+
  form {
   display: flex;
   gap: 50px;
