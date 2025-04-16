@@ -22,17 +22,15 @@
                    
                    <app-input [inputType]="'date'" [labelName]="'date'" [inputId]="'input-date'" [displayName]="'Date'" formControlName="date" [minDate]="currentDateISO" [maxDate]="'2039-12-30'" />
                    <p class="error-text" *ngIf="createCourseForm.get('date')?.touched && createCourseForm.get('date')?.value < currentDateISO">Date can't be in the past</p>
-                   <p class="error-text" *ngIf="createCourseForm.errors?.['tooFarInFuture']">The date is too far in the future</p>
-                   <div *ngIf="createCourseForm.get('date')?.touched && createCourseForm.get('date')?.errors">
-                  </div>
+                   <p class="error-text" *ngIf="createCourseForm.get('date')?.touched && createCourseForm.get('date')?.errors?.['tooFarInFuture']"> Date is too far in the future</p>
 
                    <app-input [inputType]="'time'" [labelName]="'timeStart'" [inputId]="'input-time-start'" [displayName]="'Time start'" formControlName="timeStart"/>
                    <p class="error-text" *ngIf="createCourseForm.get('timeStart')?.invalid && createCourseForm.get('timeStart')?.touched">Please select the start time</p>
                    
                    <app-input [inputType]="'time'" [labelName]="'timeEnd'" [inputId]="'input-time-end'" [displayName]="'Time end'" formControlName="timeEnd"/>
                    <p class="error-text" *ngIf="createCourseForm.get('timeEnd')?.invalid && createCourseForm.get('timeEnd')?.touched">Please select the end time</p>
-                   <p class="error-text" *ngIf="createCourseForm.errors?.['endBeforeStart']">End time can't be before starttime</p>
-                   <p class="error-text" *ngIf="createCourseForm.errors?.['startAfterEnd']">Starttime can't be after endtime</p>
+                   <p class="error-text" *ngIf="createCourseForm.errors?.['endBeforeStart'] && createCourseForm.get('timeEnd')?.touched">End time can't be before starttime</p>
+                   <p class="error-text" *ngIf="createCourseForm.errors?.['startAfterEnd'] && createCourseForm.get('timeStart')?.touched" >Starttime can't be after endtime</p>
                </div>
         
            <div class="error-text" *ngIf="validationError" id="error-message">

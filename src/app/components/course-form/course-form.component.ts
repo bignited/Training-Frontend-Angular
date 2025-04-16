@@ -65,10 +65,10 @@ export class CourseFormComponent implements OnInit {
     const inputYear = selectedDate.getFullYear();
 
     if(inputYear > 2038){
-      return { 'tooFarInFuture': true}
+      return { tooFarInFuture: true}
     }
     if (selectedDate <= today) {
-      return { 'dateInPast': true };
+      return { dateInPast: true };
     }
     return null;
   }
