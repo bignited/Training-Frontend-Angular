@@ -58,7 +58,7 @@ export class CourseFormComponent implements OnInit {
       timeStart: new FormControl('', Validators.required),
       timeEnd: new FormControl('', [Validators.required]),
       type: new FormControl(''),
-      contactEmail: new FormControl('', [Validators.required, Validators.pattern('/^\S+@\S+\.\S+$/')]),
+      contactEmail: new FormControl('', [Validators.required, Validators.pattern(/^\S+@\S+\.\S+$/)]),
       contactPhone: new FormControl('', [Validators.required])
     },
       this.validateTime);
