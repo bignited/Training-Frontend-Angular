@@ -60,7 +60,7 @@
                 </div>
                 <div>
                     <app-input [inputType]="'text'" [labelName]="'contactEmail'" [inputId]="'input-contact-email'" [displayName]="'E-mail'" formControlName="contactEmail"/>
-                    <p class="error-text" id="contact-empty-error" *ngIf="createCourseForm.get('contactEmail')?.invalid && createCourseForm.get('contactPhone')?.invalid && createCourseForm.get('contactEmail')?.touched && createCourseForm.get('contactPhone')?.touched">Please enter at least one contact method</p>
+                    <p class="error-text" id="contact-empty-error" *ngIf="createCourseForm.errors?.['noContactInfo'] && createCourseForm.get('contactEmail')?.touched && createCourseForm.get('contactPhone')?.touched">Please enter at least one contact method</p>
                     <p class="error-text" id="email-invalid-error" *ngIf="createCourseForm.get('contactEmail')?.touched && createCourseForm.get('contactEmail')?.hasError('pattern')">Email is not in a valid format</p>
                    </div>
                </div>

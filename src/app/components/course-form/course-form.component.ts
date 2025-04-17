@@ -63,7 +63,7 @@ export class CourseFormComponent implements OnInit {
       contactEmail: new FormControl('', [Validators.required, Validators.pattern(/^\S+@\S+\.\S+$/)]),
       contactPhone: new FormControl('', [Validators.required])
     },
-      this.validateTime);
+      [this.validateTime, this.validateContactInfo]);
   }
 
   ngOnInit(): void {
@@ -99,6 +99,18 @@ export class CourseFormComponent implements OnInit {
       return { startAfterEnd: true }
     }
     return null;
+  }
+
+  validateContactInfo(control: AbstractControl): ValidationErrors | null{
+  const form = control as FormGroup;
+  const email = form.get('contactEmail')?.value;
+  const phonenumber = form.get('contactPhone')?.value; 
+ 
+  if (!email && !phonenumber){
+    return { noContactInfo: true}
+  }
+  return null;
+
   }
 
   setCurrentDate() {
