@@ -6,12 +6,12 @@
     <h2>{{ course.name }}</h2>
     <p>{{course.description }}</p>
     <div>
-      <app-course-detail [iconClass]="'material-icons md-24'" [iconName]="'location_on'" [detail]="course.location" />
-      <app-course-detail [iconClass]="'material-symbols-outlined'" [iconName]="'school'" [detail]="course.teacher" />
-      <app-course-detail [iconClass]="'material-symbols-outlined'" [iconName]="'calendar_month'" [detail]="course.date | date:'dd-MM-YYYY'" />
-      <app-course-detail [iconClass]="'material-symbols-outlined'" [iconName]="'schedule'" [detail]="course.timeStart + ' - ' + course.timeEnd" />
-      <app-course-detail [iconClass]="'material-symbols-outlined'" [iconName]="'category'" [detail]="course.type" />
-      <app-course-detail [iconClass]="'material-symbols-outlined'" [iconName]="'call'" [detail]="course.contactPhone" />
+      <app-course-detail [iconClass]="'material-icons md-24'" [iconName]="'location_on'" [detail]="course.location" id="course-location" />
+      <app-course-detail [iconClass]="'material-symbols-outlined'" [iconName]="'school'" [detail]="course.teacher" id="course-teacher" />
+      <app-course-detail [iconClass]="'material-symbols-outlined'" [iconName]="'calendar_month'" [detail]="course.date | date:'dd-MM-YYYY'"  id="course-date"/>
+      <app-course-detail [iconClass]="'material-symbols-outlined'" [iconName]="'schedule'" [detail]="course.timeStart + ' - ' + course.timeEnd" id="course-timeS"/>
+      <app-course-detail [iconClass]="'material-symbols-outlined'" [iconName]="'category'" [detail]="course.type" id="course-type"/>
+      <app-course-detail [iconClass]="'material-symbols-outlined'" [iconName]="'call'" [detail]="course.contactPhone" id="course-contact " />
     </div>
     <button 
     [disabled]="!isEnrolledView() && isUserEnrolled"
