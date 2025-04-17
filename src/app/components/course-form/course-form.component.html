@@ -45,8 +45,8 @@
                    
                    <div>
                        <app-input [inputType]="'time'" [labelName]="'timeEnd'" [inputId]="'input-time-end'" [displayName]="'Time end'" formControlName="timeEnd"/>
-                       <p class="error-text" id="timeEnd-empty-error" *ngIf="createCourseForm.get('timeEnd')?.invalid && createCourseForm.get('timeEnd')?.touched">Please select the end time</p>
-                       <p class="error-text" id="timeEnd-error" *ngIf="createCourseForm.errors?.['endBeforeStart'] && createCourseForm.get('timeEnd')?.touched">End time can't be before starttime</p>
+                       <p class="error-text" id="time-end-empty-error" *ngIf="createCourseForm.get('timeEnd')?.invalid && createCourseForm.get('timeEnd')?.touched">Please select the end time</p>
+                       <p class="error-text" id="time-end-error" *ngIf="createCourseForm.errors?.['endBeforeStart'] && createCourseForm.get('timeEnd')?.touched">End time can't be before starttime</p>
                    </div>
                </div>
                <div class="third-column">
