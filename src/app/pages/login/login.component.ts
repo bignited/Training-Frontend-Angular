@@ -32,7 +32,7 @@ export class LoginComponent {
     if (usernameValue === passwordValue) {
       console.error('Incorrect Credentials');
       this.loginError = "Incorrect Credentials";
-    } else if (this.toHex(usernameValue) !== this.toHex(passwordValue)) {
+    } else if (this.validateLogin(usernameValue) !== this.validateLogin(passwordValue)) {
       console.error('Incorrect Credentials');
       this.loginError = "Incorrect Credentials";
     } else if (this.loginForm.valid) {
@@ -41,13 +41,13 @@ export class LoginComponent {
     }
   }
 
-  toHex(str: string) {
-    let match = str.match(/[0-9a-fA-F]+/g);
+  validateLogin(str: string) {
+    const match = str.match(/[0-9a-fA-F]/g);
     if (!match) return null;
 
-    let hexString = match.join('');
-    let decimalValue = parseInt(hexString, 16);
+    const hexArray = match.map((value) => parseInt(value, 16));
+    const reducedValue = hexArray.reduce((counter, value) => counter + value, 0);
 
-    return decimalValue;
+    return reducedValue;
   }
 }
