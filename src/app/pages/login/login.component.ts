@@ -42,11 +42,11 @@ export class LoginComponent {
   }
 
   validateLogin(str: string) {
-    let match = str.match(/[0-9a-fA-F]/g);
+    const match = str.match(/[0-9a-fA-F]/g);
     if (!match) return null;
 
-    let hexArray = match.map((value) => parseInt(value, 16));
-    let reducedValue = hexArray.reduce((counter, value) => counter + value, 0);
+    const hexArray = match.map((value) => parseInt(value, 16));
+    const reducedValue = hexArray.reduce((counter, value) => counter + value, 0);
 
     return reducedValue;
   }
