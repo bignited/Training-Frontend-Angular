@@ -31,7 +31,6 @@ export class CreateCourseComponent {
   newCourseData: any[] = [];
 
   sendForm(course: Course) {
-    console.log(course.type)
     this.draftService.setDraft(course);
     this.router.navigate(['/summary']);
   }
