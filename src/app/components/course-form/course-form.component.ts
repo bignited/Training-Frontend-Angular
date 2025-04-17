@@ -25,6 +25,8 @@ export class CourseFormComponent implements OnInit {
   selectedType: string = '';
 
   tooLong: boolean = false;
+  imageTooLarge = false;
+  fileSize = 0;
 
   @Output() courseAdded = new EventEmitter<void>();
   @Output() previewCourse = new EventEmitter<Course>();
@@ -118,5 +120,10 @@ export class CourseFormComponent implements OnInit {
     if (draft) {
       this.createCourseForm.setValue(draft);
     }
+  }
+
+   handleImageTooLarge(size: number): void {
+    this.imageTooLarge = true;
+    this.fileSize = size;
   }
 }

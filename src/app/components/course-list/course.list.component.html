@@ -13,12 +13,14 @@
       <app-course-detail [iconClass]="'material-symbols-outlined'" [iconName]="'category'" [detail]="course.type" id="course-type"/>
       <app-course-detail [iconClass]="'material-symbols-outlined'" [iconName]="'call'" [detail]="course.contactPhone" id="course-contact " />
     </div>
-    <button 
-    [disabled]="!isEnrolledView() && isUserEnrolled"
-    (click)="toggleEnrollment()" 
-    [ngClass]="isEnrolledView() ? 'button-danger': 'button-primary'" 
-    [id]="buttonId">
-    {{ isEnrolledView() ? 'Unenroll' : isUserEnrolled ? 'Already Enrolled' : 'Enroll' }}
-    </button>
+    <div class="course-bottom">
+      <button
+      [disabled]="!isEnrolledView() && isUserEnrolled"
+      (click)="toggleEnrollment()"
+      [ngClass]="isEnrolledView() ? 'button-danger': 'button-primary'"
+      [id]="buttonId">
+      {{ isEnrolledView() ? 'Unenroll' : isUserEnrolled ? 'Already Enrolled' : 'Enroll' }}
+      </button>
+    </div>
   </div>
 </section>

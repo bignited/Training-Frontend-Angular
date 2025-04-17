@@ -15,10 +15,13 @@
                 
                    <div>
                     <p>Type of course</p>
-                    <app-radio-input *ngFor="let type of types" [displayName]="type" [inputId]="'input-type' + type" [value]="type" [labelName]="'input-type'"/> 
+                    <app-radio-input *ngFor="let type of types" [displayName]="type" [inputId]="'input-type' + type" [value]="type" [labelName]="'input-type'" formControlName="type"/> 
                    </div>
 
-                   <app-image-input [displayName]="'Upload an image'" formControlName="image"></app-image-input>
+                   <div>
+                       <app-image-input [displayName]="'Upload an image'" formControlName="image" (imageTooLarge)="handleImageTooLarge($event)"></app-image-input>
+                       <p class="error-text" *ngIf="imageTooLarge">Your image is too large. The maximum size is 5MB</p>
+                   </div>
                    
                    <input type="submit" id="submit-form" value="Add Course" class="button-primary" [disabled]="createCourseForm.invalid"> 
                </div>

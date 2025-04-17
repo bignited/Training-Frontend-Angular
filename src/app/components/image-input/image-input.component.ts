@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, input, forwardRef } from '@angular/core';
+import { Component, input, forwardRef, output } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR, FormsModule } from '@angular/forms';
 import { Observable, ReplaySubject } from 'rxjs';
 
@@ -19,7 +19,8 @@ export class ImageInputComponent implements ControlValueAccessor {
   labelName = input<string>();
   displayName = input<string>();
   inputId = input<string>();
-  isLogin = input<boolean>(false);
+ 
+  imageTooLarge = output<number>();
   errorMessage: string = ''; 
 
   value: string = '';
@@ -58,9 +59,9 @@ export class ImageInputComponent implements ControlValueAccessor {
 
     const file = input.files?.[0];
 
-    const maxSize = 3 * 1024 * 1024;
-    if (file.size > maxSize) {
-      this.errorMessage = 'File size exceeds 3MB limit.';
+    const maxSize = 5 * 1024 * 1024;
+    if (file.size >= maxSize) {
+      this.imageTooLarge.emit(file.size); 
       this.value = '';
       this.onChange(this.value);
       return;
