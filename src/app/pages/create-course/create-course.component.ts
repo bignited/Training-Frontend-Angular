@@ -19,7 +19,6 @@ import { Router } from '@angular/router';
     height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
 }`
 })
@@ -32,6 +31,7 @@ export class CreateCourseComponent {
   newCourseData: any[] = [];
 
   sendForm(course: Course) {
+    console.log(course.type)
     this.draftService.setDraft(course);
     this.router.navigate(['/summary']);
   }

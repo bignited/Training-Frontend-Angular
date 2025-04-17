@@ -2,48 +2,63 @@
     <div>
         <h2>Create a new course</h2>
         <form (ngSubmit)="submitForm()" [formGroup]="createCourseForm">
-               <div class="left-column">
+               <div class="first-column">
                    <div>
                        <app-input [inputType]="'text'" [labelName]="'course-name'" [inputId]="'input-course-name'" [displayName]="'Course Name'" formControlName="name" />
-                       <p class="error-text" *ngIf="createCourseForm.get('name')?.invalid && createCourseForm.get('name')?.touched">Please enter a course name</p>
+                       <p class="error-text" id="name-empty-error" *ngIf="createCourseForm.get('name')?.invalid && createCourseForm.get('name')?.touched">Please enter a course name</p>
                    </div>
                    
                    <div>
                        <app-textarea [labelName]="'description'" [displayName]="'Description'" [inputId]="'textarea-description'" formControlName="description" [maxlength]="240" ></app-textarea>
-                       <p class="error-text" *ngIf="createCourseForm.get('description')?.invalid && createCourseForm.get('description')?.touched">Please enter a description</p>
+                       <p class="error-text" id="description-empty-error" *ngIf="createCourseForm.get('description')?.invalid && createCourseForm.get('description')?.touched">Please enter a description</p>
                    </div>
-                   
+                
                    <div>
-                       <app-select [name]="'location'" [items]="locationArray" [inputId]="'select-location'" [displayName]="'Location'" formControlName="location" />
-                       <p class="error-text" *ngIf="createCourseForm.get('location')?.invalid && createCourseForm.get('location')?.touched">Please select a location</p>
+                    <p>Type of course</p>
+                    <app-radio-input *ngFor="let type of types" [displayName]="type" [inputId]="'input-type' + type" [value]="type" [labelName]="'input-type'"/> 
                    </div>
-                   
+
                    <app-image-input [displayName]="'Upload an image'" formControlName="image"></app-image-input>
                    
-                   <input type="submit" id="submit-form" value="Add Course" class="button-primary">
+                   <input type="submit" id="submit-form" value="Add Course" class="button-primary" [disabled]="createCourseForm.invalid"> 
                </div>
-               <div class="right-column">
+               <div class="second-column">
                    <div>
-                       <app-input [inputType]="'text'" [labelName]="'teacher'" [inputId]="'input-teacher'" [displayName]="'Course given by'" formControlName="teacher"/>
-                       <p class="error-text" *ngIf="createCourseForm.get('teacher')?.invalid && createCourseForm.get('teacher')?.touched">Please enter the teacher's name</p>
+                       <app-select [name]="'location'" [items]="locationArray" [inputId]="'select-location'" [displayName]="'Location'" formControlName="location" />
+                       <p class="error-text" id="location-empty-error" *ngIf="createCourseForm.get('location')?.invalid && createCourseForm.get('location')?.touched">Please select a location</p>
                    </div>
-                   
+                
                    <div>
                        <app-input [inputType]="'date'" [labelName]="'date'" [inputId]="'input-date'" [displayName]="'Date'" formControlName="date" [minDate]="currentDateISO" [maxDate]="'2039-12-30'" />
-                       <p class="error-text" *ngIf="createCourseForm.get('date')?.touched && createCourseForm.get('date')?.value < currentDateISO">Date can't be in the past</p>
-                       <p class="error-text" *ngIf="createCourseForm.get('date')?.touched && createCourseForm.get('date')?.errors?.['tooFarInFuture']"> Date is too far in the future</p>
+                       <p class="error-text" id="date-past-error" *ngIf="createCourseForm.get('date')?.touched && createCourseForm.get('date')?.value < currentDateISO">Date can't be in the past</p>
+                       <p class="error-text" id="date-future-error" *ngIf="createCourseForm.get('date')?.touched && createCourseForm.get('date')?.errors?.['tooFarInFuture']"> Date is too far in the future</p>
                    </div>
 
                    <div>
                        <app-input [inputType]="'time'" [labelName]="'timeStart'" [inputId]="'input-time-start'" [displayName]="'Time start'" formControlName="timeStart"/>
-                       <p class="error-text" *ngIf="createCourseForm.get('timeStart')?.invalid && createCourseForm.get('timeStart')?.touched">Please select the start time</p>
+                       <p class="error-text" id="timestart-empty-error" *ngIf="createCourseForm.get('timeStart')?.invalid && createCourseForm.get('timeStart')?.touched">Please select the start time</p>
+                       <p class="error-text" id="timestart-error" *ngIf="createCourseForm.errors?.['startAfterEnd'] && createCourseForm.get('timeStart')?.touched" >Starttime can't be after endtime</p>
                    </div>
                    
                    <div>
                        <app-input [inputType]="'time'" [labelName]="'timeEnd'" [inputId]="'input-time-end'" [displayName]="'Time end'" formControlName="timeEnd"/>
-                       <p class="error-text" *ngIf="createCourseForm.get('timeEnd')?.invalid && createCourseForm.get('timeEnd')?.touched">Please select the end time</p>
-                       <p class="error-text" *ngIf="createCourseForm.errors?.['endBeforeStart'] && createCourseForm.get('timeEnd')?.touched">End time can't be before starttime</p>
-                       <p class="error-text" *ngIf="createCourseForm.errors?.['startAfterEnd'] && createCourseForm.get('timeStart')?.touched" >Starttime can't be after endtime</p>
+                       <p class="error-text" id="timeend-empty-error" *ngIf="createCourseForm.get('timeEnd')?.invalid && createCourseForm.get('timeEnd')?.touched">Please select the end time</p>
+                       <p class="error-text" id="timeend-error" *ngIf="createCourseForm.errors?.['endBeforeStart'] && createCourseForm.get('timeEnd')?.touched">End time can't be before starttime</p>
+                   </div>
+               </div>
+               <div class="third-column">
+                <div>
+                    <app-input [inputType]="'text'" [labelName]="'teacher'" [inputId]="'input-teacher'" [displayName]="'Course given by'" formControlName="teacher"/>
+                    <p class="error-text" id="teacher-empty-error" *ngIf="createCourseForm.get('teacher')?.invalid && createCourseForm.get('teacher')?.touched">Please enter the teacher's name</p>
+                </div>
+
+                <div>
+                    <app-input [inputType]="'text'" [labelName]="'contactPhone'" [inputId]="'input-contact-phone'" [displayName]="'Phone Number'" formControlName="contactPhone"/>
+                </div>
+                <div>
+                    <app-input [inputType]="'text'" [labelName]="'contactEmail'" [inputId]="'input-contact-email'" [displayName]="'E-mail'" formControlName="contactEmail"/>
+                    <p class="error-text" id="contact-empty-error" *ngIf="createCourseForm.get('contactEmail')?.in && createCourseForm.get('contactPhone')?.invalid && createCourseForm.get('contactEmail')?.touched && createCourseForm.get('contactPhone')?.touched">Please enter at least one contact method</p>
+                    <p class="error-text" id="email-invalid-error" *ngIf="createCourseForm.get('contactEmail')?.touched && createCourseForm.get('contactEmail')?.hasError('pattern')">Email is not in a valid format</p>
                    </div>
                </div>
         
@@ -55,4 +70,4 @@
             </div>
         </form>
     </div>
-</div>
+</div> 

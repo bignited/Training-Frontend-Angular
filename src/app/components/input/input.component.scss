@@ -1,8 +1,10 @@
 @mixin input-style() {
     border: none;
-    width: 200px;
+    width: 100%;
+    min-width: 200px;
     border-radius: 10px;
     padding: 10px 15px;
+    box-sizing: border-box;
   }
 
   input[type="text"], 
