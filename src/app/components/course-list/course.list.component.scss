@@ -12,6 +12,7 @@ button {
   margin-top: 5%;
   text-align: center;
   width: 50%;
+  align-items: center;
   border-radius: 10px;
 }
 
@@ -33,6 +34,11 @@ button {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+.course-bottom {
+  display: flex;
+  justify-content: center;
 }
 
 .course-image {

@@ -1,0 +1,12 @@
+<div>
+    <input
+    type="radio"
+    [name]="labelName()"
+    (change)="updateValue($event)"
+    [value]="value"
+    [id]="inputId()"
+    (blur)="handleBlur()"
+    [checked]="value === selectedType"
+    >
+    <label [for]="inputId()">{{ displayName() }}</label>
+</div>

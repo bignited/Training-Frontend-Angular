@@ -1,13 +1,13 @@
 <main>
     <app-navbar />
-    <app-alert-box *ngIf="errorMessage" [errorMessage]="errorMessage" [messageStart]="'Could not enroll'" (closeEvent)="clearMessage()" id="error-alert"></app-alert-box>
-    <app-alert-box *ngIf="successMessage" [successMessage]="successMessage" (closeEvent)="clearMessage()" id="success-alert"></app-alert-box>
-    <div class="list-items">
+    <app-alert-box id="error-alert" *ngIf="errorMessage" [errorMessage]="errorMessage" [messageStart]="'Could not enroll'" (closeEvent)="clearMessage()" id="error-alert"></app-alert-box>
+    <app-alert-box id="success-alert" *ngIf="successMessage" [successMessage]="successMessage" (closeEvent)="clearMessage()" ></app-alert-box>
+    <div id="card-component-container" class="list-items">
         <app-course-list *ngFor="let Course of courseList" [course]="Course"
-            (enrollmentError)="handleError($event)" (enrollmentSuccess)="handleSuccess($event)"></app-course-list>
+            (enrollmentError)="handleError($event)" (enrollmentSuccess)="handleSuccess($event)" [cardId]="'enroll-' + Course.name" [buttonId]="Course.name.toLowerCase() + '-course-button'"></app-course-list>
     </div>
-    <div *ngIf="noCourses" class="no-courses-message" id="no-courses-message">
-        <h3>Currently no courses available</h3>
-        <p>New courses are added regularly — check back again soon!</p>
+    <div id="no-courses-message" *ngIf="noCourses" class="no-courses-message" >
+        <h3 id="no-courses-title">Currently no courses available</h3>
+        <p id="no-courses-subtitle">New courses are added regularly — check back again soon!</p>
     </div>
 </main>

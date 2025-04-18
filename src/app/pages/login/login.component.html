@@ -2,12 +2,12 @@
     <div class="login-card">
         <h3>Welcome</h3>
         <form (ngSubmit)="onSubmit()" [formGroup]="loginForm">
-            <app-input [inputType]="'text'" [labelName]="'Username'" [displayName]="'Username'"
-                formControlName="username" [inputId]="'input-username'" [isLogin]="true" />
-            <app-input [inputType]="'password'" [labelName]="'password'" [displayName]="'Password'"
-                formControlName="password" [inputId]="'input-password'" [isLogin]="true" />
-            <input type="submit" value="Login" id="button-login">
-            <div class="error-text" *ngIf="loginError" id="error-message">
+            <app-input [inputId]="'input-username'" [inputType]="'text'" [labelName]="'Username'" [displayName]="'Username'"
+                formControlName="username"  [isLogin]="true" />
+            <app-input [inputId]="'input-password'"[inputType]="'password'" [labelName]="'password'" [displayName]="'Password'"
+                formControlName="password" [isLogin]="true" />
+            <input id="button-login" type="submit" value="Login" >
+            <div id="error-message" class="error-text" *ngIf="loginError" >
                 <p>{{ loginError }}</p>
             </div>
         </form>

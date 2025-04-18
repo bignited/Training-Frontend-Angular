@@ -8,10 +8,11 @@ import { ImageInputComponent } from '../image-input/image-input.component';
 import { TextareaComponent } from "../textarea/textarea.component";
 import { Course } from '../../models/course.model';
 import { DraftService } from '../../services/draft.service';
+import { RadioInputComponent } from '../radio-input/radio-input.component';
 
 @Component({
   selector: 'app-course-form',
-  imports: [ReactiveFormsModule, CommonModule, InputComponent, SelectComponent, TextareaComponent, ImageInputComponent],
+  imports: [ReactiveFormsModule, CommonModule, InputComponent, SelectComponent, TextareaComponent, ImageInputComponent, RadioInputComponent],
   templateUrl: 'course-form.component.html',
   styleUrl: 'course-form.component.scss'
 })
@@ -21,8 +22,11 @@ export class CourseFormComponent implements OnInit {
   successMessage: string | undefined;
   currentDateISO!: string;
   currentDate!: Date;
+  selectedType: string = '';
 
   tooLong: boolean = false;
+  imageTooLarge = false;
+  fileSize = 0;
 
   @Output() courseAdded = new EventEmitter<void>();
   @Output() previewCourse = new EventEmitter<Course>();
@@ -38,6 +42,13 @@ export class CourseFormComponent implements OnInit {
     'Gent'
   ]
 
+  types = [
+    'Workshop',
+    'Hands On',
+    'Discussion',
+    'Theory'
+  ]
+
   constructor() {
     this.createCourseForm = new FormGroup({
       name: new FormControl('', [Validators.required]),
@@ -48,8 +59,11 @@ export class CourseFormComponent implements OnInit {
       date: new FormControl('', [Validators.required, this.validateCalendar]),
       timeStart: new FormControl('', Validators.required),
       timeEnd: new FormControl('', [Validators.required]),
+      type: new FormControl(''),
+      contactEmail: new FormControl('', [Validators.required, Validators.pattern(/^\S+@\S+\.\S+$/)]),
+      contactPhone: new FormControl('', [Validators.required])
     },
-      this.validateTime);
+      [this.validateTime, this.validateContactInfo]);
   }
 
   ngOnInit(): void {
@@ -87,6 +101,18 @@ export class CourseFormComponent implements OnInit {
     return null;
   }
 
+  validateContactInfo(control: AbstractControl): ValidationErrors | null{
+  const form = control as FormGroup;
+  const email = form.get('contactEmail')?.value;
+  const phonenumber = form.get('contactPhone')?.value; 
+ 
+  if (!email && !phonenumber){
+    return { noContactInfo: true}
+  }
+  return null;
+
+  }
+
   setCurrentDate() {
     const today = new Date();
     this.currentDate = today;
@@ -106,5 +132,10 @@ export class CourseFormComponent implements OnInit {
     if (draft) {
       this.createCourseForm.setValue(draft);
     }
+  }
+
+   handleImageTooLarge(size: number): void {
+    this.imageTooLarge = true;
+    this.fileSize = size;
   }
 }

@@ -4,8 +4,11 @@ export interface Course{
     description: string;
     location: string;
     teacher: string;
+    type: string;
     image: string | null;  
     date: Date;
     timeStart: string; 
     timeEnd: string;
+    contactEmail: string;
+    contactPhone: string;
 }

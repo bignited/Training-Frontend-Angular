@@ -1,4 +1,4 @@
-<section class="list-item">
+<section [id]="cardId()" class="list-item">
   <div class="course-image">
     <figure><img [src]="course.image || placeholderImageURL" alt="placeholder image"></figure>
   </div>
@@ -6,17 +6,21 @@
     <h2>{{ course.name }}</h2>
     <p>{{course.description }}</p>
     <div>
-      <app-course-detail [iconClass]="'material-icons md-24'" [iconName]="'location_on'" [detail]="course.location" />
-      <app-course-detail [iconClass]="'material-symbols-outlined'" [iconName]="'school'" [detail]="course.teacher" />
-      <app-course-detail [iconClass]="'material-symbols-outlined'" [iconName]="'calendar_month'" [detail]="course.date | date:'dd-MM-YYYY'" />
-      <app-course-detail [iconClass]="'material-symbols-outlined'" [iconName]="'schedule'" [detail]="course.timeStart + ' - ' + course.timeEnd" />
+      <app-course-detail id="course-location" [iconClass]="'material-icons md-24'" [iconName]="'location_on'" [detail]="course.location"  />
+      <app-course-detail id="course-teacher" [iconClass]="'material-symbols-outlined'" [iconName]="'school'" [detail]="course.teacher"  />
+      <app-course-detail id="course-date" [iconClass]="'material-symbols-outlined'" [iconName]="'calendar_month'" [detail]="course.date | date:'dd-MM-YYYY'"  />
+      <app-course-detail id="course-time" [iconClass]="'material-symbols-outlined'" [iconName]="'schedule'" [detail]="course.timeStart + ' - ' + course.timeEnd" />
+      <app-course-detail id="course-type" [iconClass]="'material-symbols-outlined'" [iconName]="'category'" [detail]="course.type" />
+      <app-course-detail id="course-contact" [iconClass]="'material-symbols-outlined'" [iconName]="'call'" [detail]="course.contactPhone"  />
     </div>
-    <button 
-    [disabled]="!isEnrolledView() && isUserEnrolled"
-    (click)="toggleEnrollment()" 
-    [ngClass]="isEnrolledView() ? 'button-danger': 'button-primary'" 
-    [id]="buttonId">
-    {{ isEnrolledView() ? 'Unenroll' : isUserEnrolled ? 'Already Enrolled' : 'Enroll' }}
-    </button>
+    <div class="course-bottom">
+      <button
+      [disabled]="!isEnrolledView() && isUserEnrolled"
+      (click)="toggleEnrollment()"
+      [ngClass]="isEnrolledView() ? 'button-danger': 'button-primary'"
+      [id]="buttonId()">
+      {{ isEnrolledView() ? 'Unenroll' : isUserEnrolled ? 'Already Enrolled' : 'Enroll' }}
+      </button>
+    </div>
   </div>
 </section>
