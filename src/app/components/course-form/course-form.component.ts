@@ -59,7 +59,7 @@ export class CourseFormComponent implements OnInit {
       date: new FormControl('', [Validators.required, this.validateCalendar]),
       timeStart: new FormControl('', Validators.required),
       timeEnd: new FormControl('', [Validators.required]),
-      type: new FormControl(''),
+      type: new FormControl('', [Validators.required]),
       contactEmail: new FormControl('', [Validators.required, Validators.pattern(/^\S+@\S+\.\S+$/)]),
       contactPhone: new FormControl('', [Validators.required])
     },
