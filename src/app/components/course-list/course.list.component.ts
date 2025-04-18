@@ -25,6 +25,7 @@ export class CourseListComponent implements OnInit {
   enrolledCourseIds: number[];
   isEnrolled: boolean = false;
   placeholderImageURL: string = 'https://placehold.co/300x200';
+  @Input() isSummary: boolean = false; 
 
   conflictCheck = inject(ConflictCheckService);
   sessionStorageService = inject(SessionstorageService);

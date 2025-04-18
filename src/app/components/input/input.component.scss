@@ -17,3 +17,7 @@
   .blue-background {
     background-color: var(--light-blue);
   }
+
+  .input-error {
+    border: 2px solid var(--danger-color) !Important;
+  }

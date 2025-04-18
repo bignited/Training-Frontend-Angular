@@ -5,5 +5,8 @@
   [value]="value" 
   (blur)="handleBlur()"
   (input)="onInputChange($event)"
-  [attr.maxlength]="maxlength()">
+  [attr.maxlength]="maxlength()"
+  [ngClass]="{
+    'input-error': hasError
+  }">
 </textarea><br>

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, forwardRef, input, output } from '@angular/core';
+import { Component, forwardRef, Input, input, output } from '@angular/core';
 import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
@@ -22,6 +22,7 @@ export class TextareaComponent implements ControlValueAccessor {
   displayName = input<string>();
   maxlength = input<number>();
   value: string = '';
+  @Input() hasError: boolean | undefined = false;
 
   valueChange = output<string>();
 
