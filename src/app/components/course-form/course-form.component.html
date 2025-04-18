@@ -59,6 +59,7 @@
                 <div>
                     <app-input [hasError]="createCourseForm.errors?.['noContactInfo'] && createCourseForm.get('contactEmail')?.touched && createCourseForm.get('contactPhone')?.touched" [inputType]="'text'" [labelName]="'contactPhone'" [inputId]="'input-contact-phone'" [displayName]="'Phone Number'" formControlName="contactPhone"/>
                     <p class="error-text" id="contact-empty-error" *ngIf="createCourseForm.errors?.['noContactInfo'] && createCourseForm.get('contactEmail')?.touched && createCourseForm.get('contactPhone')?.touched">Please enter at least one contact method</p>
+                    <p class="error-text" id="phone-number-invalid-error" *ngIf="createCourseForm.get('contactPhone')?.touched && createCourseForm.get('contactPhone')?.hasError('pattern')">Phonenumber is not in a valid format</p>
                 </div>
                 <div>
                     <app-input [hasError]="createCourseForm.errors?.['noContactInfo'] && createCourseForm.get('contactEmail')?.touched && createCourseForm.get('contactPhone')?.touched" [inputType]="'text'" [labelName]="'contactEmail'" [inputId]="'input-contact-email'" [displayName]="'E-mail'" formControlName="contactEmail"/>

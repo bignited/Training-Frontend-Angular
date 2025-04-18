@@ -12,7 +12,6 @@ button {
   margin-top: 5%;
   text-align: center;
   width: 50%;
-  align-items: center;
   border-radius: 10px;
 }
 
@@ -20,7 +19,6 @@ button {
   display: flex;
   flex-direction: column;
   background-color: #edf4ff;
-  margin: auto;
   border-radius: 20px;
   min-width: 300px;
   width: 20vw;
@@ -39,6 +37,7 @@ button {
 .course-bottom {
   display: flex;
   justify-content: center;
+  max-width: 100%;
 }
 
 .course-image {
