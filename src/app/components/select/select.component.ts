@@ -1,10 +1,10 @@
-import { NgFor } from '@angular/common';
-import { Component, forwardRef, input, output } from '@angular/core';
+import { CommonModule, NgFor } from '@angular/common';
+import { Component, forwardRef, Input, input, output } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
   selector: 'app-select',
-  imports: [NgFor],
+  imports: [NgFor, CommonModule],
   templateUrl: './select.component.html',
   styleUrl: './select.component.scss',
   providers: [
@@ -22,6 +22,7 @@ export class SelectComponent implements ControlValueAccessor {
   items = input<any[]>([]);
   displayName = input<string>();
   selectedValue = '';
+  @Input() hasError: boolean | undefined = false;
 
   selectionChange = output<string>();
 

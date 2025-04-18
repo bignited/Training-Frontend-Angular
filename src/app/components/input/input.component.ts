@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component, input, forwardRef } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR, FormsModule } from '@angular/forms';
+import { Component, input, forwardRef, Input } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR, FormsModule, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-input',
@@ -23,7 +23,8 @@ export class InputComponent implements ControlValueAccessor {
   maxDate = input<string>();
   maxLength = input<number>(30); 
   isLogin = input<boolean>(false);
-
+  @Input() hasError: boolean | undefined = false;
+   
   value: string = '';
   touched = false;
 

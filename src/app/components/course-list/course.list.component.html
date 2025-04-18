@@ -11,7 +11,7 @@
       <app-course-detail id="course-date" [iconClass]="'material-symbols-outlined'" [iconName]="'calendar_month'" [detail]="course.date | date:'dd-MM-YYYY'"  />
       <app-course-detail id="course-time" [iconClass]="'material-symbols-outlined'" [iconName]="'schedule'" [detail]="course.timeStart + ' - ' + course.timeEnd" />
       <app-course-detail id="course-type" [iconClass]="'material-symbols-outlined'" [iconName]="'category'" [detail]="course.type" />
-      <app-course-detail id="course-contact" [iconClass]="'material-symbols-outlined'" [iconName]="'call'" [detail]="course.contactPhone"  />
+      <app-course-detail id="course-contact" [iconClass]="'material-symbols-outlined'" [iconName]="'call'" [detail]="course.contactPhone + '/' + course.contactEmail"  />
     </div>
     <div class="course-bottom">
       <button
