@@ -16,7 +16,7 @@ export class CourseListComponent implements OnInit {
   @Input() course!: Course;
   isEnrolledView = input<boolean>(false);
   cardId = input<string>();
-  buttonId: string | undefined;
+  buttonId = input<string>();
  
   courseUnenrolled = output<number>();
   enrollmentError = output<string>();
@@ -37,10 +37,6 @@ export class CourseListComponent implements OnInit {
   ngOnInit() {
     if (this.enrolledCourseIds.includes(this.course.id)) {
       this.isEnrolled = true;
-    }
-
-    if (!this.buttonId) {
-      this.buttonId = this.course.name.toLowerCase() + '-course-button';
     }
   }
 

@@ -15,32 +15,32 @@
                 
                    <div>
                     <p>Type of course</p>
-                    <app-radio-input *ngFor="let type of types" [inputId]="'input-type' + type" [displayName]="type"  [value]="type" [labelName]="'input-type'" formControlName="type"/> 
+                    <app-radio-input *ngFor="let type of types" [inputId]="'radio-course-' + type" [displayName]="type"  [value]="type" [labelName]="'input-type'" formControlName="type"/> 
                    </div>
 
                    <div>
-                       <app-image-input [displayName]="'Upload an image'" formControlName="image" (imageTooLarge)="handleImageTooLarge($event)"></app-image-input>
-                       <p class="error-text" *ngIf="imageTooLarge">Your image is too large. The maximum size is 5MB</p>
+                       <app-image-input [inputId]="'image-upload'" [displayName]="'Upload an image'" formControlName="image" (imageTooLarge)="handleImageTooLarge($event)"></app-image-input>
+                       <p id="image-too-large-error" class="error-text" *ngIf="imageTooLarge">Your image is too large. The maximum size is 5MB</p>
                    </div>
                    
-                   <input type="submit" id="submit-form" value="Add Course" class="button-primary" [disabled]="createCourseForm.invalid"> 
+                   <input type="submit" id="button-add-course" value="Add Course" class="button-primary" [disabled]="createCourseForm.invalid"> 
                </div>
                <div class="second-column">
                    <div>
-                       <app-select [name]="'location'" [items]="locationArray" [inputId]="'select-location'" [displayName]="'Location'" formControlName="location" />
+                       <app-select [inputId]="'select-location'" [name]="'location'" [items]="locationArray"  [displayName]="'Location'" formControlName="location" />
                        <p class="error-text" id="location-empty-error" *ngIf="createCourseForm.get('location')?.invalid && createCourseForm.get('location')?.touched">Please select a location</p>
                    </div>
                 
                    <div>
-                       <app-input [inputType]="'date'" [labelName]="'date'" [inputId]="'input-date'" [displayName]="'Date'" formControlName="date" [minDate]="currentDateISO" [maxDate]="'2039-12-30'" />
+                       <app-input [inputId]="'input-date'" [inputType]="'date'" [labelName]="'date'"  [displayName]="'Date'" formControlName="date" [minDate]="currentDateISO" [maxDate]="'2039-12-30'" />
                        <p class="error-text" id="date-past-error" *ngIf="createCourseForm.get('date')?.touched && createCourseForm.get('date')?.value < currentDateISO">Date can't be in the past</p>
                        <p class="error-text" id="date-future-error" *ngIf="createCourseForm.get('date')?.touched && createCourseForm.get('date')?.errors?.['tooFarInFuture']"> Date is too far in the future</p>
                    </div>
 
                    <div>
                        <app-input [inputType]="'time'" [labelName]="'timeStart'" [inputId]="'input-time-start'" [displayName]="'Time start'" formControlName="timeStart"/>
-                       <p class="error-text" id="timestart-empty-error" *ngIf="createCourseForm.get('timeStart')?.invalid && createCourseForm.get('timeStart')?.touched">Please select the start time</p>
-                       <p class="error-text" id="timestart-error" *ngIf="createCourseForm.errors?.['startAfterEnd'] && createCourseForm.get('timeStart')?.touched" >Starttime can't be after endtime</p>
+                       <p class="error-text" id="time-start-empty-error" *ngIf="createCourseForm.get('timeStart')?.invalid && createCourseForm.get('timeStart')?.touched">Please select the start time</p>
+                       <p class="error-text" id="time-start-error" *ngIf="createCourseForm.errors?.['startAfterEnd'] && createCourseForm.get('timeStart')?.touched" >Starttime can't be after endtime</p>
                    </div>
                    
                    <div>

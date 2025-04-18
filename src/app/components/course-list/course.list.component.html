@@ -18,7 +18,7 @@
       [disabled]="!isEnrolledView() && isUserEnrolled"
       (click)="toggleEnrollment()"
       [ngClass]="isEnrolledView() ? 'button-danger': 'button-primary'"
-      [id]="buttonId">
+      [id]="buttonId()">
       {{ isEnrolledView() ? 'Unenroll' : isUserEnrolled ? 'Already Enrolled' : 'Enroll' }}
       </button>
     </div>
