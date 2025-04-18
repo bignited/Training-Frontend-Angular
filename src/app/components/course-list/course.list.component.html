@@ -15,7 +15,7 @@
     </div>
     <div class="course-bottom">
       <button
-      [disabled]="!isEnrolledView() && isUserEnrolled"
+      [disabled]="(!isEnrolledView() && isUserEnrolled) || isSummary"
       (click)="toggleEnrollment()"
       [ngClass]="isEnrolledView() ? 'button-danger': 'button-primary'"
       [id]="buttonId()">
