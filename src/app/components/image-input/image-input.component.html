@@ -1,4 +1,4 @@
-<label [for]="inputId()" class="button-primary file-label" id="image-upload">{{ displayName() }}</label><br>
+<label [for]="inputId()" class="button-primary file-label">{{ displayName() }}</label><br>
 <input 
   type="file" 
   accept=".jpg, .png"
@@ -7,6 +7,6 @@
   [id]="inputId()" 
   class="hidden-input"
 />
-<p>Images can be max. 5MB</p>
-<img *ngIf="value" [src]="value" alt="Preview" style="max-width: 100px; margin-top: 10px;" />
+<p id="max-file-size-message">Images can be max. 5MB</p>
+<img id="image-preview" *ngIf="value" [src]="value" alt="Preview" style="max-width: 100px; margin-top: 10px;" />
  

@@ -20,10 +20,10 @@
                    </div>
 
                    <div>
-                       <app-image-input [inputId]="'image-upload'" [displayName]="'Upload an image'" formControlName="image" (imageTooLarge)="handleImageTooLarge($event)"></app-image-input>
+                    <app-image-input [inputId]="'image-upload'" [displayName]="'Upload an image'" formControlName="image" (imageTooLarge)="handleImageTooLarge($event)"></app-image-input>
                        <p id="image-too-large-error" class="error-text" *ngIf="imageTooLarge">Your image is too large. The maximum size is 5MB</p>
                    </div>
-                   
+                
                    <input type="submit" id="button-add-course" value="Add Course" class="button-primary"> 
                </div>
                <div class="second-column">
