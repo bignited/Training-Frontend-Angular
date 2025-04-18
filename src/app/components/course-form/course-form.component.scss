@@ -2,8 +2,9 @@
    background-color: #edf4ff;
    border-radius: 10px;
    width: 100%;
-  box-sizing: border-box;
+   box-sizing: border-box;
    padding: 50px;
+   margin-bottom: 5%;
  }
 
  .first-column, .second-column, .third-column {
@@ -12,12 +13,22 @@
   max-width: 33%;
   flex-direction: column;
   gap: 20px;
+  overflow: hidden; 
  }
+
+ 
+app-input {
+  width: 100%;
+  max-width: 100%;      
+  display: block;
+}
 
  form {
   display: flex;
   gap: 50px;
  }
+
+ 
 
  p {
   margin: 0;

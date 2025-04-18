@@ -1,9 +1,11 @@
 .error-text {
     font-size: 0.9rem;
     color: var(--danger-color);
+    max-width: 100%;           
 }
 
 .success-text {
     font-size: 0.9rem;
     color: var(--success-color);
+    max-width: 100%;           
 }
