@@ -3,8 +3,8 @@
     <figure><img [src]="course.image || placeholderImageURL" alt="placeholder image"></figure>
   </div>
   <div class="course-data">
-    <h2>{{ course.name }}</h2>
-    <p>{{course.description }}</p>
+    <h2 id="course-name">{{ course.name }}</h2>
+    <p id="course-description">{{course.description }}</p>
     <div>
       <app-course-detail id="course-location" [iconClass]="'material-icons md-24'" [iconName]="'location_on'" [detail]="course.location"  />
       <app-course-detail id="course-teacher" [iconClass]="'material-symbols-outlined'" [iconName]="'school'" [detail]="course.teacher"  />
