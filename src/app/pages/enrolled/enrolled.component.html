@@ -3,7 +3,7 @@
     <app-alert-box id="error-alert" *ngIf="errorMessage" [errorMessage]="errorMessage" [messageStart]="'Could not unenroll'" (closeEvent)="clearMessage()"></app-alert-box>
     <app-alert-box id="success-alert" *ngIf="successMessage" [successMessage]="successMessage" (closeEvent)="clearMessage()" ></app-alert-box>
     <div id="card-component-container" class="list-items">
-        <app-course-list *ngFor="let Course of fetchedCourses" [cardId]="Course.name + '-enrolled'" [buttonId]="Course.name.toLowerCase() + '-course-button'" [course]="Course" [isEnrolledView]="true" (enrollmentError)="handleError($event)" (enrollmentSuccess)="handleSuccess($event)" (courseUnenrolled)="onCourseUnenrolled($event)"></app-course-list>
+        <app-course-list *ngFor="let Course of fetchedCourses" [cardId]="Course.name.trim() + '-enrolled'" [buttonId]="Course.name.toLowerCase() + '-course-button'" [course]="Course" [isEnrolledView]="true" (enrollmentError)="handleError($event)" (enrollmentSuccess)="handleSuccess($event)" (courseUnenrolled)="onCourseUnenrolled($event)"></app-course-list>
     </div>
     <div id="no-courses-message" *ngIf="noCourses" class="no-courses-message">
         <h3>Not enrolled in any courses yet</h3>

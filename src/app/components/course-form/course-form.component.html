@@ -16,6 +16,7 @@
                    <div>
                     <p>Type of course</p>
                     <app-radio-input *ngFor="let type of types" [inputId]="'radio-course-' + type" [displayName]="type"  [value]="type" [labelName]="'input-type'" formControlName="type"/> 
+                    <p id="type-empty-error" class="error-text"  *ngIf="createCourseForm.get('type')?.invalid && createCourseForm.get('location')?.touched">Please select a type of course</p>
                    </div>
 
                    <div>
@@ -23,12 +24,12 @@
                        <p id="image-too-large-error" class="error-text" *ngIf="imageTooLarge">Your image is too large. The maximum size is 5MB</p>
                    </div>
                    
-                   <input type="submit" id="button-add-course" value="Add Course" class="button-primary" [disabled]="createCourseForm.invalid"> 
+                   <input type="submit" id="button-add-course" value="Add Course" class="button-primary"> 
                </div>
                <div class="second-column">
                    <div>
                        <app-select [inputId]="'select-location'" [name]="'location'" [items]="locationArray"  [displayName]="'Location'" formControlName="location" />
-                       <p class="error-text" id="location-empty-error" *ngIf="createCourseForm.get('location')?.invalid && createCourseForm.get('location')?.touched">Please select a location</p>
+                       <p id="location-empty-error" class="error-text"  *ngIf="createCourseForm.get('location')?.invalid && createCourseForm.get('location')?.touched">Please select a location</p>
                    </div>
                 
                    <div>
