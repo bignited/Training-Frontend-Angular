@@ -15,8 +15,9 @@ export class CourseListComponent implements OnInit {
 
   @Input() course!: Course;
   isEnrolledView = input<boolean>(false);
+  cardId = input<string>();
   buttonId: string | undefined;
-
+ 
   courseUnenrolled = output<number>();
   enrollmentError = output<string>();
   enrollmentSuccess = output<string>();

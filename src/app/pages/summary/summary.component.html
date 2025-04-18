@@ -5,9 +5,9 @@
             <h2 id="summary-heading">Review course</h2>
             <p id="summary-text">Please confirm everything is correct. <br> On the right is a preview of how your course will appear</p>
             <div class="actions">
-                  <button (click)="onApprove()" class="button-primary" id="button-approve">Approve</button>
-                  <button (click)="onEdit()" class="button-primary" id="button-edit">Edit</button>
-                  <button (click)="onCancel()" class="button-danger" id="button-discard">Discard</button>
+                  <button id="button-approve" (click)="onApprove()" class="button-primary" >Approve</button>
+                  <button id="button-edit" (click)="onEdit()" class="button-primary" >Edit</button>
+                  <button id="button-discard" (click)="onCancel()" class="button-danger" >Discard</button>
             </div> 
         </div>
         <div>
@@ -16,8 +16,8 @@
                 
               </div>
               <div *ngIf="!course">
-                <p>No course data found.</p>
-                <button routerLink="/create-course">Back to form</button>
+                <p id="no-course-data-text">No course data found.</p>
+                <button id="no-course-button" routerLink="/create-course">Back to form</button>
               </div>
         </div>
     </div>

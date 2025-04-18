@@ -8,19 +8,8 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-create-course',
   imports: [NavbarComponent, CourseFormComponent],
-  template: `
-    <main>
-      <app-navbar />
-      <app-course-form (previewCourse)="sendForm($event)" />
-    </main>
-  `,
-  styles: `
-  main {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}`
+  templateUrl: 'create-course.component.html',
+  styleUrl: 'create-course.component.scss'
 })
 export class CreateCourseComponent {
 
